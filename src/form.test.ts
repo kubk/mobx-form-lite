@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { TextField } from "./text-field.ts";
+import { TextField } from "./text-field";
 import {
   formTouchAll,
   formUnTouchAll,
@@ -7,10 +7,10 @@ import {
   isFormTouched,
   isFormTouchedAndValid,
   isFormValid,
-} from "./form.ts";
-import { validators } from "./validator.ts";
-import { BooleanField } from "./boolean-field.ts";
-import { ListField } from "./list-field.ts";
+} from "./form";
+import { validators } from "./validator";
+import { BooleanField } from "./boolean-field";
+import { ListField } from "./list-field";
 
 const isRequiredMessage = "is required";
 

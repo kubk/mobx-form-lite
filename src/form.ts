@@ -1,8 +1,8 @@
-import { TextField } from "./text-field.ts";
-import { BooleanField } from "./boolean-field.ts";
+import { TextField } from "./text-field";
+import { BooleanField } from "./boolean-field";
 
-import { ListField } from "./list-field.ts";
-import { isTouchableField } from "./touchable-field.ts";
+import { ListField } from "./list-field";
+import { isTouchableField } from "./touchable-field";
 
 type Form = Record<string, unknown>;
 

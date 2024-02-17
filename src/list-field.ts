@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
-import { TouchableField } from "./touchable-field.ts";
-import { FieldWithValue } from "./field-with-value.ts";
+import { TouchableField } from "./touchable-field";
+import { FieldWithValue } from "./field-with-value";
 
 export class ListField<T> implements TouchableField, FieldWithValue<T[]> {
   isTouched = false;

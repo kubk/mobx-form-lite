@@ -1,8 +1,8 @@
 import { makeAutoObservable } from "mobx";
-import { FieldWithValue } from "./field-with-value.ts";
-import { TouchableField } from "./touchable-field.ts";
-import { ClonableField } from "./clonable-field.ts";
-import { FieldWithError } from "./field-with-error.ts";
+import { FieldWithValue } from "./field-with-value";
+import { TouchableField } from "./touchable-field";
+import { ClonableField } from "./clonable-field";
+import { FieldWithError } from "./field-with-error";
 
 export class TextField<T>
   implements

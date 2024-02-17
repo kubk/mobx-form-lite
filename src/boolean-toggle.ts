@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { FieldWithValue } from "./field-with-value.ts";
+import { FieldWithValue } from "./field-with-value";
 
 export class BooleanToggle implements FieldWithValue<boolean> {
   constructor(public value: boolean) {
