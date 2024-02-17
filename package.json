@@ -1,6 +1,6 @@
 {
   "name": "mobx-form-lite",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/mobx-form-lite.js",
@@ -9,9 +9,10 @@
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
-    "test": "npx vitest --dir src"
+    "test": "npx vitest --dir src",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "keywords": ["mobx", "form", "form management", "mobx form"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
