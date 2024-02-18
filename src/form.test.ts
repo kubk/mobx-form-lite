@@ -1,6 +1,8 @@
 import { expect, test } from "vitest";
-import { TextField } from "./text-field";
+import { TextField } from "./fields/text-field";
 import {
+  formReset,
+  formToPlain,
   formTouchAll,
   formUnTouchAll,
   isFormEmpty,
@@ -9,8 +11,8 @@ import {
   isFormValid,
 } from "./form";
 import { validators } from "./validator";
-import { BooleanField } from "./boolean-field";
-import { ListField } from "./list-field";
+import { BooleanField } from "./fields/boolean-field";
+import { ListField } from "./fields/list-field";
 
 const isRequiredMessage = "is required";
 
@@ -227,4 +229,90 @@ test("formTouchAll / formUnTouchAll", () => {
 
   formUnTouchAll(f);
   expect(isFormTouched(f)).toBeFalsy();
+});
+
+test("form reset - simple", () => {
+  const f = {
+    a: new TextField("a", validators.required(isRequiredMessage)),
+    b: new TextField("b", validators.required(isRequiredMessage)),
+  };
+
+  f.a.onChange("1");
+  f.b.onChange("2");
+  expect(f.a.value).toBe("1");
+  expect(f.b.value).toBe("2");
+
+  f.a.reset();
+  expect(f.a.value).toBe("a");
+  expect(f.b.value).toBe("2");
+
+  f.b.reset();
+  expect(f.a.value).toBe("a");
+  expect(f.b.value).toBe("b");
+
+  f.a.onChange("1");
+  f.b.onChange("2");
+  expect(f.a.value).toBe("1");
+  expect(f.b.value).toBe("2");
+  formReset(f);
+
+  expect(f.a.value).toBe("a");
+  expect(f.b.value).toBe("b");
+});
+
+test("form reset - nested", () => {
+  const f = {
+    a: new TextField("a", validators.required(isRequiredMessage)),
+    b: {
+      c: {
+        d: new TextField("d", validators.required(isRequiredMessage)),
+        e: new BooleanField(true),
+        f: new ListField([new TextField("init 1"), new TextField("init 2")]),
+        k: null,
+      },
+    },
+  };
+
+  f.a.onChange("1");
+  f.b.c.d.onChange("2");
+  f.b.c.e.setValue(false);
+  f.b.c.f.push(new TextField("3"));
+  expect(f.a.value).toBe("1");
+  expect(f.b.c.d.value).toBe("2");
+  expect(f.b.c.e.value).toBe(false);
+  expect(f.b.c.f.value.length).toBe(3);
+
+  formReset(f);
+
+  expect(f.a.value).toBe("a");
+  expect(f.b.c.d.value).toBe("d");
+  expect(f.b.c.e.value).toBe(true);
+  expect(f.b.c.f.value.length).toBe(2);
+});
+
+test("formToPlain", () => {
+  const f = {
+    a: new TextField("a", validators.required(isRequiredMessage)),
+    b: {
+      c: {
+        d: new TextField("d", validators.required(isRequiredMessage)),
+        e: new BooleanField(true),
+        f: new ListField([new TextField("init 1"), new TextField("init 2")]),
+        k: null,
+      },
+    },
+  };
+
+  const plain = formToPlain(f);
+
+  expect(plain).toEqual({
+    a: "a",
+    b: {
+      c: {
+        d: "d",
+        e: true,
+        f: ["init 1", "init 2"],
+      },
+    },
+  });
 });

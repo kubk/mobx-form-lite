@@ -1,20 +1,29 @@
 import { makeAutoObservable } from "mobx";
-import { TouchableField } from "./touchable-field";
-import { FieldWithValue } from "./field-with-value";
+import { TouchableField } from "../interfaces/touchable-field";
+import { FieldWithValue } from "../interfaces/field-with-value";
+import { deepClone } from "../deep-clone";
 
 export class ListField<T> implements TouchableField, FieldWithValue<T[]> {
   isTouched = false;
+
+  readonly initialValue: T[];
 
   constructor(
     public value: T[],
     public validate?: (value: T[]) => string | undefined,
   ) {
     makeAutoObservable(this, { validate: false }, { autoBind: true });
+    this.initialValue = deepClone(value);
   }
 
   push(value: T) {
     this.touch();
     this.value.push(value);
+  }
+
+  setValue(value: T[]) {
+    this.touch();
+    this.value = value;
   }
 
   removeByIndex(index: number) {
@@ -37,5 +46,9 @@ export class ListField<T> implements TouchableField, FieldWithValue<T[]> {
 
   unTouch() {
     this.isTouched = false;
+  }
+
+  reset() {
+    this.setValue(this.initialValue);
   }
 }

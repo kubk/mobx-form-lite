@@ -1,8 +1,9 @@
-import { TextField } from "./text-field";
-import { BooleanField } from "./boolean-field";
+import { TextField } from "./fields/text-field";
+import { BooleanField } from "./fields/boolean-field";
 
-import { ListField } from "./list-field";
-import { isTouchableField } from "./touchable-field";
+import { ListField } from "./fields/list-field";
+import { isTouchableField } from "./interfaces/touchable-field";
+import { isFieldWithValue } from "./interfaces/field-with-value";
 
 type Form = Record<string, unknown>;
 
@@ -79,8 +80,43 @@ export const formTouchAll = walkAndDo((field: unknown) => {
   }
 });
 
+export const formReset = walkAndDo((field: unknown) => {
+  if (isFieldWithValue(field)) {
+    field.reset();
+  }
+});
+
 export const formUnTouchAll = walkAndDo((field: unknown) => {
   if (isTouchableField(field)) {
     field.unTouch();
   }
 });
+
+const getValueFromField = (field: unknown): unknown => {
+  if (field instanceof TextField || field instanceof BooleanField) {
+    return field.value;
+  }
+  if (field instanceof ListField) {
+    return field.value.map(getValueFromField);
+  }
+  if (Array.isArray(field)) {
+    return field.map(getValueFromField);
+  }
+  if (typeof field === "object" && field !== null) {
+    return Object.fromEntries(
+      Object.entries(field).map(([key, value]) => [
+        key,
+        getValueFromField(value),
+      ]),
+    );
+  }
+};
+
+// TODO: Add recursive typescript return type
+export const formToPlain = (form: Form): any => {
+  const result: Form = {};
+  Object.entries(form).forEach(([key, value]) => {
+    result[key] = getValueFromField(value);
+  });
+  return result;
+};
