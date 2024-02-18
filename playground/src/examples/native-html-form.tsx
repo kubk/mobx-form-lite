@@ -1,20 +1,23 @@
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { TextField } from "../../../src";
+import { formReset, isFormTouched, TextField } from "../../../src";
 
 class FormStore {
-  name = new TextField("");
-  email = new TextField("");
+  form = {
+    name: new TextField(""),
+    email: new TextField(""),
+  };
 }
 
 export const NativeHtmlForm = observer(() => {
   const [store] = useState(() => new FormStore());
+  const { form } = store;
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        alert(`Name: ${store.name.value}, Email: ${store.email.value}`);
+        alert(`Name: ${form.name.value}, Email: ${form.email.value}`);
       }}
     >
       <div>
@@ -23,8 +26,8 @@ export const NativeHtmlForm = observer(() => {
           id="name"
           name="name"
           type="text"
-          value={store.name.value}
-          onChange={(e) => store.name.onChange(e.target.value)}
+          value={form.name.value}
+          onChange={(e) => form.name.onChange(e.target.value)}
         />
       </div>
       <div>
@@ -33,11 +36,20 @@ export const NativeHtmlForm = observer(() => {
           id="email"
           name="email"
           type="email"
-          value={store.email.value}
-          onChange={(e) => store.email.onChange(e.target.value)}
+          value={form.email.value}
+          onChange={(e) => form.email.onChange(e.target.value)}
         />
       </div>
       <button type="submit">Submit</button>
+      <button
+        type="button"
+        disabled={!isFormTouched(form)}
+        onClick={() => {
+          formReset(form);
+        }}
+      >
+        Reset
+      </button>
     </form>
   );
 });

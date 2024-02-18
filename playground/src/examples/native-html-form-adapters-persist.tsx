@@ -1,6 +1,12 @@
 import { HTMLInputTypeAttribute, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { FieldWithValue, isFormValid, TextField } from "../../../src";
+import {
+  FieldWithValue,
+  formReset,
+  isFormTouched,
+  isFormValid,
+  TextField,
+} from "../../../src";
 import { makePersistable } from "mobx-persist-store";
 
 const validateEmail = (value: string) => {
@@ -91,6 +97,15 @@ export const NativeHtmlFormPersist = observer(() => {
       />
       <button type="submit" disabled={!isFormValid(form)}>
         Submit
+      </button>
+      <button
+        type="button"
+        disabled={!isFormTouched(form)}
+        onClick={() => {
+          formReset(form);
+        }}
+      >
+        Reset
       </button>
     </form>
   );

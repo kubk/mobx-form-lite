@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { isFormValid, TextField } from "../../../src";
+import { formReset, isFormTouched, isFormValid, TextField } from "../../../src";
 
 const validateEmail = (value: string) => {
   if (!value) {
@@ -66,6 +66,15 @@ export const NativeHtmlFormValidation = observer(() => {
       ) : null}
       <button type="submit" disabled={!isFormValid(form)}>
         Submit
+      </button>
+      <button
+        type="button"
+        disabled={!isFormTouched(form)}
+        onClick={() => {
+          formReset(form);
+        }}
+      >
+        Reset
       </button>
     </form>
   );
