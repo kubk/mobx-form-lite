@@ -2,10 +2,11 @@
   "compilerOptions": {
     "target": "es5",
     "moduleResolution": "NodeNext",
-    "module": "esnext",
+    "module": "NodeNext",
     "lib": ["dom", "esnext"],
     "declaration": true,
     "outDir": "./dist",
+    "skipLibCheck": true,
     "strict": true,
     "esModuleInterop": true
   },
