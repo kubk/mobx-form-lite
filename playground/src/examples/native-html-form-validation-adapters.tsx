@@ -1,6 +1,12 @@
 import { HTMLInputTypeAttribute, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { formReset, isFormTouched, isFormValid, TextField } from "../../../src";
+import {
+  formReset,
+  isFormEmpty,
+  isFormTouched,
+  isFormValid,
+  TextField,
+} from "../../../src";
 
 const validateEmail = (value: string) => {
   if (!value) {
@@ -73,7 +79,7 @@ export const NativeHtmlFormValidationAdapters = observer(() => {
         name="email"
         type="email"
       />
-      <button type="submit" disabled={!isFormValid(form)}>
+      <button type="submit" disabled={!isFormValid(form) || isFormEmpty(form)}>
         Submit
       </button>
       <button

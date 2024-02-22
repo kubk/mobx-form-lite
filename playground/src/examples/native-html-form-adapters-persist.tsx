@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import {
   FieldWithValue,
   formReset,
+  isFormEmpty,
   isFormTouched,
   isFormValid,
   TextField,
@@ -95,7 +96,7 @@ export const NativeHtmlFormPersist = observer(() => {
         name="email"
         type="email"
       />
-      <button type="submit" disabled={!isFormValid(form)}>
+      <button type="submit" disabled={!isFormValid(form) || isFormEmpty(form)}>
         Submit
       </button>
       <button

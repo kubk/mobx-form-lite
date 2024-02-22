@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { formReset, isFormTouched, TextField } from "../../../src";
+import { formReset, isFormEmpty, isFormTouched, TextField } from "../../../src";
 
 class FormStore {
   form = {
@@ -40,7 +40,9 @@ export const NativeHtmlForm = observer(() => {
           onChange={(e) => form.email.onChange(e.target.value)}
         />
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={isFormEmpty(form)}>
+        Submit
+      </button>
       <button
         type="button"
         disabled={!isFormTouched(form)}
