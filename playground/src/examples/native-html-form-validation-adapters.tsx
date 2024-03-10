@@ -71,23 +71,15 @@ export const NativeHtmlFormValidationAdapters = observer(() => {
         alert(`Name: ${form.name.value}, Email: ${form.email.value}`);
       }}
     >
-      <InputField field={form.name} label="Name" id="name" name="name" />
-      <InputField
-        field={form.email}
-        label="Email"
-        id="email"
-        name="email"
-        type="email"
-      />
+      <InputField field={form.name} label="Name" name="name" />
+      <InputField field={form.email} label="Email" name="email" type="email" />
       <button type="submit" disabled={!isFormValid(form) || isFormEmpty(form)}>
         Submit
       </button>
       <button
         type="button"
         disabled={!isFormTouched(form)}
-        onClick={() => {
-          formReset(form);
-        }}
+        onClick={() => formReset(form)}
       >
         Reset
       </button>

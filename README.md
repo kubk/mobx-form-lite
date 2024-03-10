@@ -1,5 +1,162 @@
 ### mobx-form-lite
 
-The `mobx-form-lite` is a lightweight form management based on MobX. It is designed to be simple, while providing a powerful and flexible API.
+The mobx-form-lite is a lightweight form management library based on MobX. Key ideas:
+
+- ✅ If you know MobX, you already know mobx-form-lite. The library is just a set of stores such as `TextField`, `BooleanField`, and helper functions like `isFormTouched`, `isFormValid` that operate on those stores.
+- 🛠️ Type-safe. No JSON-based configuration.
+- 🔄 Flexibility. No need to extend your stores from the library's classes.
+- 🪶 Lightweight (N kb gzipped) since MobX does all the heavy lifting.
+- 🚀 Performant - it avoids unnecessary re-renders, thanks to MobX.
+
+### Example with adapters
+
+```tsx
+import { observer, useLocalObservable } from "mobx-react-lite"
+import {
+  TextField,
+  isFormValid,
+  isFormTouched,
+  formReset,
+} from "mobx-form-lite"
+
+const validateName = (value: string) =>
+  !value ? "Please enter name" : undefined
+
+const validateEmail = (value: string) =>
+  !value.includes("@") ? "Please enter a valid email" : undefined
+
+export const Example = observer(() => {
+  const form = useLocalObservable(() => ({
+    name: new TextField("", validateName),
+    email: new TextField("", validateEmail),
+  }))
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        alert(`Name: ${form.name.value}, Email: ${form.email.value}`)
+      }}
+    >
+      <InputField field={form.name} label="Name" name="name" />
+      <InputField field={form.email} label="Email" name="email" type="email" />
+      <button type="submit" disabled={!isFormValid(form)}>
+        Submit
+      </button>
+      <button
+        type="button"
+        disabled={!isFormTouched(form)}
+        onClick={() => formReset(form)}
+      >
+        Reset
+      </button>
+    </form>
+  )
+})
+```
+
+And your `InputField` may look like this:
+
+```tsx
+type Props = {
+  field: TextField<string>
+  label: string
+  id?: string
+  name: string
+  type?: HTMLInputTypeAttribute
+}
+
+const InputField = observer((props: Props) => {
+  const { field, name, type, id, label } = props
+
+  return (
+    <div>
+      <label htmlFor={id}>{label}</label>
+      <input
+        id={id}
+        name={name}
+        type={type}
+        value={field.value}
+        onChange={(e) => field.onChange(e.target.value)}
+        onBlur={field.onBlur}
+      />
+      {field.isTouched && field.error ? (
+        <div style={{ color: "red" }}>{field.error}</div>
+      ) : null}
+    </div>
+  )
+})
+```
+
+You write a field component once to adapt to your UI-kit and then re-use it anywhere in the project.
+
+If the form store logic gets more complicated you can extract it into a dedicated store and use `TextField` as any other Mobx store:
+
+```tsx
+import { makeAutoObservable } from "mobx"
+import { TextField } from "mobx-form-lite"
+import { apiLoadUser } from "./path/to/api"
+
+type UserForm = {
+  name: TextField<string>
+  email: TextField<string>
+}
+
+const createUserForm = (name: string, email: string) => {
+  return {
+    name: new TextField(name, validateName),
+    email: new TextField(email, validateEmail),
+  }
+}
+
+class UserFormStore {
+  form?: UserForm
+  isUserLoading = false
+
+  constructor() {
+    makeAutoObservable(this)
+  }
+
+  loadUser(id?: string) {
+    if (!id) {
+      this.form = createUserForm("", "")
+    }
+
+    this.isUserLoading = true
+    apiLoadUser(id)
+      .then(action((user) => {
+        this.form = createUserForm(user.name, user.email)
+      }))
+      .finally(action(() => {
+        this.isUserLoading = false
+      }))
+  }
+}
+```
+
+And use it the say way as before:
+
+```tsx
+export const Example = observer(() => {
+  // Or retrieve via React Context
+  const [store] = useState(() => new UserFormStore())
+  const { form } = store
+
+  // The rest is the same
+  // return ...
+})
+
+```
+
+### More examples:
+
+- [Native HTML form](./playground/src/examples/native-html-form.tsx)
+- [Native HTML5 form - validation](./playground/src/examples/native-html-form-validation.tsx)
+- [Validation with adapters](./playground/src/examples/native-html-form-validation-adapters.tsx)
+- [Persist to LocalStorage](./playground/src/examples/native-html-form-adapters-persist.tsx)
+
+To run the examples folder you can clone the repo, go to `playground` folder and execute `npm run dev` there.
+
+### State
 
 The package is work in progress. The API is not stable and may change in the future. Use at your own risk. Check the unit tests to see what it can do.

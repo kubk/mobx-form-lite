@@ -316,3 +316,34 @@ test("formToPlain", () => {
     },
   });
 });
+
+test("validator all", () => {
+  const onlyNumbers = (value: unknown) => {
+    if (typeof value !== "string") {
+      return false;
+    }
+
+    return value.match(/\d+/g) ? undefined : "Only numbers";
+  };
+  const lengthMoreThan = (n: number) => (value: unknown) => {
+    if (typeof value !== "string") {
+      return false;
+    }
+
+    return value.length > n ? undefined : `Length should be more than ${n}`;
+  };
+
+  const f = {
+    name: new TextField("", validators.all(onlyNumbers, lengthMoreThan(3))),
+  };
+
+  expect(isFormValid(f)).toBeFalsy();
+  expect(f.name.error).toMatchInlineSnapshot('"Only numbers"');
+  f.name.onChange("23");
+  expect(isFormValid(f)).toBeFalsy();
+  expect(f.name.error).toMatchInlineSnapshot('"Length should be more than 3"');
+  f.name.onChange("2323");
+  expect(isFormValid(f)).toBeTruthy();
+  f.name.onChange("23223");
+  expect(isFormValid(f)).toBeTruthy();
+});
