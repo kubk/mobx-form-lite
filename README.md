@@ -1,8 +1,8 @@
 # mobx-form-lite
 
-[![Npm Version](https://badge.fury.io/js/mobx-form-lite.svg)](https://badge.fury.io/js/mobx-log)
-[![NPM downloads](http://img.shields.io/npm/dm/mobx-log.svg)](https://www.npmjs.com/package/mobx-form-lite)
-[![Tests](https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/kubk/mobx-log/actions/workflows/main.yml)
+[![Npm Version](https://badge.fury.io/js/mobx-form-lite.svg)](https://badge.fury.io/js/mobx-form-lite)
+[![NPM downloads](http://img.shields.io/npm/dm/mobx-form-lite.svg)](https://www.npmjs.com/package/mobx-form-lite)
+[![Tests](https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 Lightweight form management library based on MobX
