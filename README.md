@@ -1,9 +1,17 @@
-## mobx-form-lite
+# mobx-form-lite
 
-The `mobx-form-lite` is a lightweight form management library based on MobX. Key ideas:
+[![Npm Version](https://badge.fury.io/js/mobx-form-lite.svg)](https://badge.fury.io/js/mobx-log)
+[![NPM downloads](http://img.shields.io/npm/dm/mobx-log.svg)](https://www.npmjs.com/package/mobx-form-lite)
+[![Tests](https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/kubk/mobx-log/actions/workflows/main.yml)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-- ✅ If you know MobX, you already know mobx-form-lite. The library is just a set of stores such as `TextField`, `BooleanField`, and helper functions like `isFormTouched`, `isFormValid` that operate on those stores.
-- 🛠️ Type-safe. No JSON-based configuration.
+Lightweight form management library based on MobX
+
+---
+Key ideas:
+
+- ✅ If you know MobX, you already know `mobx-form-lite`. The library is just a set of stores such as `TextField`, `BooleanField`, and helper functions like `isFormTouched`, `isFormValid` that operate on those stores.
+- 🛠️ Type-safe, including nested forms. No JSON-based configuration.
 - 🔄 Flexibility. No need to extend your stores from the library's classes.
 - 🪶 Lightweight (N kb gzipped) since MobX does all the heavy lifting.
 - 🚀 Performant - it avoids unnecessary re-renders, thanks to MobX.
