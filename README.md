@@ -1,6 +1,6 @@
-### mobx-form-lite
+## mobx-form-lite
 
-The mobx-form-lite is a lightweight form management library based on MobX. Key ideas:
+The `mobx-form-lite` is a lightweight form management library based on MobX. Key ideas:
 
 - ✅ If you know MobX, you already know mobx-form-lite. The library is just a set of stores such as `TextField`, `BooleanField`, and helper functions like `isFormTouched`, `isFormValid` that operate on those stores.
 - 🛠️ Type-safe. No JSON-based configuration.
@@ -8,16 +8,17 @@ The mobx-form-lite is a lightweight form management library based on MobX. Key i
 - 🪶 Lightweight (N kb gzipped) since MobX does all the heavy lifting.
 - 🚀 Performant - it avoids unnecessary re-renders, thanks to MobX.
 
+### Installation
+
+```
+npm i mobx-form-lite
+```
+
 ### Example with adapters
 
 ```tsx
 import { observer, useLocalObservable } from "mobx-react-lite"
-import {
-  TextField,
-  isFormValid,
-  isFormTouched,
-  formReset,
-} from "mobx-form-lite"
+import { TextField, isFormValid, isFormTouched, formReset } from "mobx-form-lite"
 
 const validateName = (value: string) =>
   !value ? "Please enter name" : undefined
@@ -88,9 +89,9 @@ const InputField = observer((props: Props) => {
 })
 ```
 
-You write a field component once to adapt to your UI-kit and then re-use it anywhere in the project.
+You write a field component once to adapt to your UI kit and then reuse it anywhere in the project.
 
-If the form store logic gets more complicated you can extract it into a dedicated store and use `TextField` as any other Mobx store:
+If the form's store logic becomes more complicated, you can extract it into a dedicated store and use `TextField` as you would with any other MobX store.
 
 ```tsx
 import { makeAutoObservable } from "mobx"
