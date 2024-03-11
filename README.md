@@ -3,9 +3,8 @@
 	<br><a href="https://badge.fury.io/js/mobx-form-lite"><img src="https://badge.fury.io/js/mobx-form-lite.svg" alt="Npm Version"></a>
 <a href="https://www.npmjs.com/package/mobx-form-lite"><img src="http://img.shields.io/npm/dm/mobx-form-lite.svg" alt="NPM downloads"></a>
 <a href="https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml"><img src="https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml/badge.svg?branch=main" alt="Tests"></a>
-<a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" alt="code style: prettier"></a>
 </h1>
-<p align="center">Lightweight form management library based on MobX</p>
+<p align="center">Lightweight form management based on MobX</p>
 
 ### Features:
 
