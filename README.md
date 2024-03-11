@@ -1,14 +1,13 @@
-# mobx-form-lite
+<h1 align="center">
+	mobx-form-lite
+	<br><a href="https://badge.fury.io/js/mobx-form-lite"><img src="https://badge.fury.io/js/mobx-form-lite.svg" alt="Npm Version"></a>
+<a href="https://www.npmjs.com/package/mobx-form-lite"><img src="http://img.shields.io/npm/dm/mobx-form-lite.svg" alt="NPM downloads"></a>
+<a href="https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml"><img src="https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml/badge.svg?branch=main" alt="Tests"></a>
+<a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" alt="code style: prettier"></a>
+</h1>
+<p align="center">Lightweight form management library based on MobX</p>
 
-[![Npm Version](https://badge.fury.io/js/mobx-form-lite.svg)](https://badge.fury.io/js/mobx-form-lite)
-[![NPM downloads](http://img.shields.io/npm/dm/mobx-form-lite.svg)](https://www.npmjs.com/package/mobx-form-lite)
-[![Tests](https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-
-Lightweight form management library based on MobX
-
----
-Key ideas:
+### Features:
 
 - ✅ If you know MobX, you already know `mobx-form-lite`. The library is just a set of stores such as `TextField`, `BooleanField`, and helper functions like `isFormTouched`, `isFormValid` that operate on those stores.
 - 🛠️ Type-safe, including nested forms. No JSON-based configuration.
