@@ -9,9 +9,9 @@ hero:
     - theme: brand
       text: Quick start
       link: /quick-start
-    - theme: alt
-      text: API Examples
-      link: /api-examples
+#    - theme: alt
+#      text: API Examples
+#      link: /api-examples
 
 features:
   - title: 🛠️ Type-safe
