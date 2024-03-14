@@ -3,3 +3,5 @@ node_modules
 .idea
 playground/node_modules
 playground-next/node_modules
+docs/.vitepress/dist
+docs/.vitepress/cache

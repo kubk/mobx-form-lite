@@ -3,6 +3,9 @@ import { TouchableField } from "../interfaces/touchable-field";
 import { FieldWithValue } from "../interfaces/field-with-value";
 import { deepClone } from "../deep-clone";
 
+/**
+ * List field suitable for list of fields
+ */
 export class ListField<T> implements TouchableField, FieldWithValue<T[]> {
   isTouched = false;
 

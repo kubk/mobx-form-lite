@@ -12,7 +12,10 @@
     "test": "npx vitest --dir=src",
     "test:coverage": "npx vitest run --dir=src/ --coverage",
     "typecheck": "npx tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "size-limit": [
     {
@@ -38,6 +41,7 @@
     "prettier": "^3.2.5",
     "size-limit": "^11.0.2",
     "typescript": "^5.3.3",
+    "vitepress": "^1.0.0-rc.45",
     "vitest": "^0.34.6"
   },
   "peerDependencies": {

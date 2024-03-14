@@ -1,6 +1,9 @@
 import { makeAutoObservable } from "mobx";
 import { FieldWithValue } from "../interfaces/field-with-value";
 
+/**
+ * Boolean toggle suitable for toggles
+ */
 export class BooleanToggle implements FieldWithValue<boolean> {
   readonly initialValue: boolean;
 

@@ -39,17 +39,32 @@ const walkAndCheck = (
   };
 };
 
+/**
+ * Check if form has any touched field with error
+ */
 export const isFormTouchedAndHasError = walkAndCheck(
   (field) => field.isTouched && !!field.error,
   "some",
 );
 
+/**
+ * Check if form has any touched field
+ */
 export const isFormTouched = walkAndCheck((field) => field.isTouched, "some");
+/**
+ * Check if form has any field with error
+ */
 export const isFormValid = walkAndCheck((field) => !field.error, "every", true);
+/**
+ * Check if form has any touched field with error
+ */
 export const isFormTouchedAndValid = walkAndCheck(
   (field) => field.isTouched && !field.error,
   "some",
 );
+/**
+ * Check if form has all the fields empty
+ */
 export const isFormEmpty = walkAndCheck((field) => !field.value, "every");
 
 export const walkAndDo = (fn: (field: unknown) => void) => (form: Form) => {
@@ -74,18 +89,27 @@ export const walkAndDo = (fn: (field: unknown) => void) => (form: Form) => {
   });
 };
 
+/**
+ * Set all fields as touched
+ */
 export const formTouchAll = walkAndDo((field: unknown) => {
   if (isTouchableField(field)) {
     field.touch();
   }
 });
 
+/**
+ * Reset all fields
+ */
 export const formReset = walkAndDo((field: unknown) => {
   if (isFieldWithValue(field)) {
     field.reset();
   }
 });
 
+/**
+ * Set all fields as untouched
+ */
 export const formUnTouchAll = walkAndDo((field: unknown) => {
   if (isTouchableField(field)) {
     field.unTouch();
@@ -113,6 +137,9 @@ const getValueFromField = (field: unknown): unknown => {
 };
 
 // TODO: Add recursive typescript return type
+/**
+ * Convert form to plain object recursively
+ */
 export const formToPlain = (form: Form): any => {
   const result: Form = {};
   Object.entries(form).forEach(([key, value]) => {

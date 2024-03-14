@@ -4,6 +4,9 @@ import { ClonableField } from "../interfaces/clonable-field";
 import { FieldWithError } from "../interfaces/field-with-error";
 import { FieldWithValue } from "../interfaces/field-with-value";
 
+/**
+ * Boolean field suitable for checkboxes
+ */
 export class BooleanField
   implements
     TouchableField,

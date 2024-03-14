@@ -4,7 +4,7 @@
 <a href="https://www.npmjs.com/package/mobx-form-lite"><img src="http://img.shields.io/npm/dm/mobx-form-lite.svg" alt="NPM downloads"></a>
 <a href="https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml"><img src="https://github.com/kubk/mobx-form-lite/actions/workflows/node.js.yml/badge.svg?branch=main" alt="Tests"></a>
 </h1>
-<p align="center">Lightweight form management based on MobX</p>
+<p align="center">Lightweight form management for MobX</p>
 
 ### Features:
 
@@ -20,149 +20,9 @@
 npm i mobx-form-lite
 ```
 
-### Example with adapters
+### Documentation
 
-```tsx
-import { observer, useLocalObservable } from "mobx-react-lite"
-import { TextField, isFormValid, isFormTouched, formReset } from "mobx-form-lite"
-
-const validateName = (value: string) =>
-  !value ? "Please enter name" : undefined
-
-const validateEmail = (value: string) =>
-  !value.includes("@") ? "Please enter a valid email" : undefined
-
-export const Example = observer(() => {
-  const form = useLocalObservable(() => ({
-    name: new TextField("", validateName),
-    email: new TextField("", validateEmail),
-  }))
-
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault()
-        alert(`Name: ${form.name.value}, Email: ${form.email.value}`)
-      }}
-    >
-      <InputField field={form.name} label="Name" name="name" />
-      <InputField field={form.email} label="Email" name="email" type="email" />
-      <button type="submit" disabled={!isFormValid(form)}>
-        Submit
-      </button>
-      <button
-        type="button"
-        disabled={!isFormTouched(form)}
-        onClick={() => formReset(form)}
-      >
-        Reset
-      </button>
-    </form>
-  )
-})
-```
-
-And your `InputField` may look like this:
-
-```tsx
-type Props = {
-  field: TextField<string>
-  label: string
-  id?: string
-  name: string
-  type?: HTMLInputTypeAttribute
-}
-
-const InputField = observer((props: Props) => {
-  const { field, name, type, id, label } = props
-
-  return (
-    <div>
-      <label htmlFor={id}>{label}</label>
-      <input
-        id={id}
-        name={name}
-        type={type}
-        value={field.value}
-        onChange={(e) => field.onChange(e.target.value)}
-        onBlur={field.onBlur}
-      />
-      {field.isTouched && field.error ? (
-        <div style={{ color: "red" }}>{field.error}</div>
-      ) : null}
-    </div>
-  )
-})
-```
-
-You write a field component once to adapt to your UI kit and then reuse it anywhere in the project.
-
-If the form's store logic becomes more complicated, you can extract it into a dedicated store and use `TextField` as you would with any other MobX store.
-
-```tsx
-import { makeAutoObservable } from "mobx"
-import { TextField } from "mobx-form-lite"
-import { apiLoadUser } from "./path/to/api"
-
-type UserForm = {
-  name: TextField<string>
-  email: TextField<string>
-}
-
-const createUserForm = (name: string, email: string) => {
-  return {
-    name: new TextField(name, validateName),
-    email: new TextField(email, validateEmail),
-  }
-}
-
-class UserFormStore {
-  form?: UserForm
-  isUserLoading = false
-
-  constructor() {
-    makeAutoObservable(this)
-  }
-
-  loadUser(id?: string) {
-    if (!id) {
-      this.form = createUserForm("", "")
-    }
-
-    this.isUserLoading = true
-    apiLoadUser(id)
-      .then(action((user) => {
-        this.form = createUserForm(user.name, user.email)
-      }))
-      .finally(action(() => {
-        this.isUserLoading = false
-      }))
-  }
-}
-```
-
-And use it the say way as before:
-
-```tsx
-export const Example = observer(() => {
-  // Or retrieve via React Context
-  const [store] = useState(() => new UserFormStore())
-  const { form } = store
-
-  // The rest is the same
-  // return ...
-})
-
-```
-
-### More examples:
-
-- [Native HTML form](./playground/src/examples/native-html-form.tsx)
-- [Native HTML5 form - validation](./playground/src/examples/native-html-form-validation.tsx)
-- [Validation with adapters](./playground/src/examples/native-html-form-validation-adapters.tsx)
-- [Persist to LocalStorage](./playground/src/examples/native-html-form-adapters-persist.tsx)
-
-To run the examples folder you can clone the repo, go to `playground` folder and execute `npm run dev` there.
+To check out docs, visit vitepress.dev.
 
 ### State
 

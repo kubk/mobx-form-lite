@@ -4,6 +4,9 @@ import { TouchableField } from "../interfaces/touchable-field";
 import { ClonableField } from "../interfaces/clonable-field";
 import { FieldWithError } from "../interfaces/field-with-error";
 
+/**
+ * Text field suitable for regular and textarea inputs
+ */
 export class TextField<T>
   implements
     FieldWithValue<T>,
