@@ -11,6 +11,7 @@
     "dev": "microbundle watch",
     "test": "npx vitest --dir=src",
     "test:coverage": "npx vitest run --dir=src/ --coverage",
+    "test:size": "npx size-limit",
     "typecheck": "npx tsc --noEmit",
     "prepublishOnly": "npm run build",
     "docs:dev": "vitepress dev docs",
@@ -20,7 +21,7 @@
   "size-limit": [
     {
       "path": "dist/mobx-form-lite.modern.mjs",
-      "limit": "2 kB"
+      "limit": "1 kB"
     }
   ],
   "keywords": [

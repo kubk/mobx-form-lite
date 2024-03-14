@@ -30,3 +30,4 @@ jobs:
     - run: npm run typecheck
     - run: cd playground && npm i && npx run typecheck
     - run: npm test
+    - run: npm test:size
