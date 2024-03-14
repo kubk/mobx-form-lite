@@ -11,7 +11,7 @@
 - ✅ If you know MobX, you already know `mobx-form-lite`. The library is just a set of stores such as `TextField`, `BooleanField`, and helper functions like `isFormTouched`, `isFormValid` that operate on those stores.
 - 🛠️ Type-safe, including nested forms. No JSON-based configuration.
 - 🔄 Flexibility. No need to extend your stores from the library's classes.
-- 🪶 Lightweight (~1 kb gzipped) since MobX does all the heavy lifting.
+- 🪶 Lightweight ([~1 kb](https://github.com/kubk/mobx-form-lite/blob/b1d52f9f604e056dca43707fc0bec752f931b01e/package.json#L24) gzipped) since MobX does all the heavy lifting.
 - 🚀 Performant. It avoids unnecessary re-renders, thanks to MobX.
 
 ### Installation
