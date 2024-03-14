@@ -10,4 +10,4 @@ export const all = (...validators: any[]) => {
   };
 };
 
-export const validators = { required, all }
+export const validators = { required, all };

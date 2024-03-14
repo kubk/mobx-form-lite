@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { FieldWithValue } from "../interfaces/field-with-value";
 import { TouchableField } from "../interfaces/touchable-field";
-import { ClonableField } from "../interfaces/clonable-field";
+import { CloneableField } from "../interfaces/cloneable-field";
 import { FieldWithError } from "../interfaces/field-with-error";
 
 /**
@@ -11,7 +11,7 @@ export class TextField<T>
   implements
     FieldWithValue<T>,
     TouchableField,
-    ClonableField<TextField<T>>,
+    CloneableField<TextField<T>>,
     FieldWithError
 {
   isTouched = false;
@@ -20,21 +20,23 @@ export class TextField<T>
 
   constructor(
     public value: T,
-    public validate?: (value: any) => string | undefined,
-    public onChangeCallback?: (newValue: T) => void,
+    public readonly options?: {
+      validate?: (value: any) => string | undefined;
+      onChangeCallback?: (newValue: T) => void;
+    },
   ) {
-    makeAutoObservable(this, { validate: false }, { autoBind: true });
+    makeAutoObservable(this, { options: false }, { autoBind: true });
     this.initialValue = value;
   }
 
   onChange(value: T) {
     this.value = value;
     this.isTouched = true;
-    this.onChangeCallback?.(value);
+    this.options?.onChangeCallback?.(value);
   }
 
   get error() {
-    return this.validate?.(this.value);
+    return this.options?.validate?.(this.value);
   }
 
   touch() {
@@ -50,7 +52,7 @@ export class TextField<T>
   }
 
   clone() {
-    return new TextField(this.value, this.validate);
+    return new TextField(this.value, this.options);
   }
 
   reset() {

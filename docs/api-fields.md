@@ -1,6 +1,6 @@
 # Fields
 
-Fields are just Mobx stores that represent HTML fields. They hold the state of the field and to provide a way to validate it.
+Fields are just Mobx stores that represent HTML fields. They hold the state of the field and provide a way to validate it.
 
 | **Field**     | **Description**                                                                            |
 |---------------|--------------------------------------------------------------------------------------------|

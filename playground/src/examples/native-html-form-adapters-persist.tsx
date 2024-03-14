@@ -72,8 +72,8 @@ export const persistableField = <T extends FieldWithValue<unknown>>(
 
 class FormStore {
   form = {
-    name: persistableField(new TextField("", validateName), "demo-name"),
-    email: persistableField(new TextField("", validateEmail), "demo-email"),
+    name: persistableField(new TextField("", { validate: validateName }), "demo-name"),
+    email: persistableField(new TextField("", { validate: validateEmail }), "demo-email"),
   };
 }
 

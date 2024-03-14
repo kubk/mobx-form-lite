@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { TouchableField } from "../interfaces/touchable-field";
-import { ClonableField } from "../interfaces/clonable-field";
+import { CloneableField } from "../interfaces/cloneable-field";
 import { FieldWithError } from "../interfaces/field-with-error";
 import { FieldWithValue } from "../interfaces/field-with-value";
 
@@ -10,7 +10,7 @@ import { FieldWithValue } from "../interfaces/field-with-value";
 export class BooleanField
   implements
     TouchableField,
-    ClonableField<BooleanField>,
+    CloneableField<BooleanField>,
     FieldWithError,
     FieldWithValue<boolean>
 {
@@ -20,9 +20,11 @@ export class BooleanField
 
   constructor(
     public value: boolean,
-    public validate?: (value: any) => string | undefined,
+    public options?: {
+      validate?: (value: any) => string | undefined;
+    },
   ) {
-    makeAutoObservable(this, { validate: false }, { autoBind: true });
+    makeAutoObservable(this, { options: false }, { autoBind: true });
     this.initialValue = value;
   }
 
@@ -36,7 +38,7 @@ export class BooleanField
   }
 
   get error() {
-    return this.validate?.(this.value);
+    return this.options?.validate?.(this.value);
   }
 
   touch() {
@@ -48,7 +50,7 @@ export class BooleanField
   }
 
   clone() {
-    return new BooleanField(this.value, this.validate);
+    return new BooleanField(this.value, this.options);
   }
 
   reset() {

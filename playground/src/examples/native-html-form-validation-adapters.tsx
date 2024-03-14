@@ -55,8 +55,8 @@ const InputField = observer(
 
 class FormStore {
   form = {
-    name: new TextField("", validateName),
-    email: new TextField("", validateEmail),
+    name: new TextField("", { validate: validateName }),
+    email: new TextField("", { validate: validateEmail }),
   };
 }
 

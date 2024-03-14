@@ -13,9 +13,11 @@ export class ListField<T> implements TouchableField, FieldWithValue<T[]> {
 
   constructor(
     public value: T[],
-    public validate?: (value: T[]) => string | undefined,
+    public options?: {
+      validate?: (value: T[]) => string | undefined;
+    },
   ) {
-    makeAutoObservable(this, { validate: false }, { autoBind: true });
+    makeAutoObservable(this, { options: false }, { autoBind: true });
     this.initialValue = deepClone(value);
   }
 
@@ -40,7 +42,7 @@ export class ListField<T> implements TouchableField, FieldWithValue<T[]> {
   }
 
   get error() {
-    return this.validate?.(this.value);
+    return this.options?.validate?.(this.value);
   }
 
   touch() {

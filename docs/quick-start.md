@@ -24,8 +24,8 @@ const validateEmail = (value: string) =>
 
 export const Example = observer(() => {
   const form = useLocalObservable(() => ({
-    name: new TextField("", validateName),
-    email: new TextField("", validateEmail),
+    name: new TextField("", { validate: validateName }),
+    email: new TextField("", { validate: validateEmail }),
   }));
 
   return (
@@ -96,8 +96,8 @@ type UserForm = {
 
 const createUserForm = (name: string, email: string) => {
   return {
-    name: new TextField(name, validateName),
-    email: new TextField(email, validateEmail),
+    name: new TextField(name, { validate: validateName }),
+    email: new TextField(email, { validate: validateEmail }),
   };
 };
 

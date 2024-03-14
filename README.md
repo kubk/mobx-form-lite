@@ -22,8 +22,8 @@ npm i mobx-form-lite
 
 ### Documentation
 
-To check out docs, visit vitepress.dev.
+To check out docs, visit [https://kubk.github.io/mobx-form-lite/](https://kubk.github.io/mobx-form-lite/)
 
 ### State
 
-The package is work in progress. The API is not stable and may change in the future. Use at your own risk. Check the unit tests to see what it can do.
+The package is close to a major release. The API is not stable and may change in the future. Check the unit tests to see what the library can do.
