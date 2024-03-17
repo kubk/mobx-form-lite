@@ -7,7 +7,7 @@ export function useQueryParam(key, initialValue) {
   const getQueryParamValue = () => {
     const searchParams = new URLSearchParams(window.location.search);
     const value = searchParams.get(key);
-    return value ? parseInt(value, 10) : initialValue;
+    return value ?? initialValue;
   };
 
   const [value, setValue] = useState(getQueryParamValue);

@@ -12,9 +12,13 @@
   },
   "dependencies": {
     "mobx-persist-store": "^1.1.4",
+    "mobx-log": "^2.2.3",
+    "mobx-form-lite": "^0.9.3",
+    "antd": "^5.15.3",
     "mobx-react-lite": "^4.0.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",

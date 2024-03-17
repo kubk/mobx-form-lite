@@ -116,12 +116,16 @@ class UserFormStore {
 
     this.isUserLoading = true;
     apiLoadUser(id)
-      .then(action((user) => {
-        this.form = createUserForm(user.name, user.email);
-      }))
-      .finally(action(() => {
-        this.isUserLoading = false;
-      }));
+      .then(
+        action((user) => {
+          this.form = createUserForm(user.name, user.email);
+        }),
+      )
+      .finally(
+        action(() => {
+          this.isUserLoading = false;
+        }),
+      );
   }
 }
 ```

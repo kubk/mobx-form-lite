@@ -7,7 +7,7 @@ import {
   isFormTouched,
   isFormValid,
   TextField,
-} from "../../../src";
+} from "mobx-form-lite";
 import { makePersistable } from "mobx-persist-store";
 
 const validateEmail = (value: string) => {
@@ -72,8 +72,14 @@ export const persistableField = <T extends FieldWithValue<unknown>>(
 
 class FormStore {
   form = {
-    name: persistableField(new TextField("", { validate: validateName }), "demo-name"),
-    email: persistableField(new TextField("", { validate: validateEmail }), "demo-email"),
+    name: persistableField(
+      new TextField("", { validate: validateName }),
+      "demo-name",
+    ),
+    email: persistableField(
+      new TextField("", { validate: validateEmail }),
+      "demo-email",
+    ),
   };
 }
 

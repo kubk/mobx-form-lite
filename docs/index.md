@@ -9,9 +9,9 @@ hero:
     - theme: brand
       text: Quick start
       link: /quick-start
-#    - theme: alt
-#      text: API Examples
-#      link: /api-examples
+    - theme: alt
+      text: Examples
+      link: /example-antd-api
 
 features:
   - title: 🛠️ Type-safe
@@ -21,4 +21,3 @@ features:
   - title: 🪶 Lightweight
     details: ~1 kb gzipped because MobX does all the heavy lifting.
 ---
-

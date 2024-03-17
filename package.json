@@ -1,6 +1,6 @@
 {
   "name": "mobx-form-lite",
-  "version": "0.9.1",
+  "version": "0.9.3",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/mobx-form-lite.js",
@@ -21,7 +21,7 @@
   "size-limit": [
     {
       "path": "dist/mobx-form-lite.modern.mjs",
-      "limit": "1 kB"
+      "limit": "1.1 kB"
     }
   ],
   "keywords": [

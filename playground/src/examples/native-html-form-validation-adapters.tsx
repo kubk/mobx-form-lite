@@ -6,7 +6,7 @@ import {
   isFormTouched,
   isFormValid,
   TextField,
-} from "../../../src";
+} from "mobx-form-lite";
 
 const validateEmail = (value: string) => {
   if (!value) {

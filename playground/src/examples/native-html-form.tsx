@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { formReset, isFormEmpty, isFormTouched, TextField } from "../../../src";
+import {
+  formReset,
+  isFormEmpty,
+  isFormTouched,
+  TextField,
+} from "mobx-form-lite";
 
 class FormStore {
   form = {
