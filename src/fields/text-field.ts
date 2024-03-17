@@ -15,6 +15,7 @@ export class TextField<T>
     FieldWithError
 {
   isTouched = false;
+  isBlurred = false;
 
   readonly initialValue: T;
 
@@ -44,7 +45,12 @@ export class TextField<T>
   }
 
   onBlur() {
+    this.isBlurred = true;
     this.touch();
+  }
+
+  get shouldShowError() {
+    return this.isTouched && this.isBlurred;
   }
 
   unTouch() {

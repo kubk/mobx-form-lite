@@ -90,7 +90,7 @@ export const walkAndDo = (fn: (field: unknown) => void) => (form: Form) => {
 };
 
 /**
- * Set all fields as touched
+ * Set all fields as touched recursively
  */
 export const formTouchAll = walkAndDo((field: unknown) => {
   if (isTouchableField(field)) {
@@ -99,7 +99,7 @@ export const formTouchAll = walkAndDo((field: unknown) => {
 });
 
 /**
- * Reset all fields
+ * Reset all fields recursively
  */
 export const formReset = walkAndDo((field: unknown) => {
   if (isFieldWithValue(field)) {
