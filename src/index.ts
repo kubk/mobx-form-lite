@@ -12,10 +12,10 @@ export {
   formUnTouchAll,
   formReset,
   formToPlain,
+  isFormDirty,
   isFormValid,
   isFormTouched,
   isFormTouchedAndValid,
   isFormEmpty,
   isFormTouchedAndHasError,
-  walkAndDo,
 } from "./form";

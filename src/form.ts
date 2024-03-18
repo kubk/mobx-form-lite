@@ -40,7 +40,21 @@ const walkAndCheck = (
 };
 
 /**
+ * Check if form has any field with error
+ */
+export const isFormValid = walkAndCheck((field) => !field.error, "every", true);
+
+/**
+ * Check if form has any touched field
+ *
+ * A touched field is a field that has been focused and then blurred
+ */
+export const isFormTouched = walkAndCheck((field) => field.isTouched, "some");
+
+/**
  * Check if form has any touched field with error
+ *
+ * A touched field is a field that has been focused and then blurred
  */
 export const isFormTouchedAndHasError = walkAndCheck(
   (field) => field.isTouched && !!field.error,
@@ -48,20 +62,22 @@ export const isFormTouchedAndHasError = walkAndCheck(
 );
 
 /**
- * Check if form has any touched field
- */
-export const isFormTouched = walkAndCheck((field) => field.isTouched, "some");
-/**
- * Check if form has any field with error
- */
-export const isFormValid = walkAndCheck((field) => !field.error, "every", true);
-/**
  * Check if form has any touched field with error
+ *
+ * A touched field is a field that has been focused and then blurred
  */
 export const isFormTouchedAndValid = walkAndCheck(
   (field) => field.isTouched && !field.error,
   "some",
 );
+
+/**
+ * Check if form has any changed field
+ */
+export const isFormDirty = walkAndCheck((field) => {
+  return isTouchableField(field) && field.isDirty;
+}, "some");
+
 /**
  * Check if form has all the fields empty
  */
@@ -91,10 +107,23 @@ export const walkAndDo = (fn: (field: unknown) => void) => (form: Form) => {
 
 /**
  * Set all fields as touched recursively
+ *
+ * A touched field is a field that has been focused and then blurred
  */
 export const formTouchAll = walkAndDo((field: unknown) => {
   if (isTouchableField(field)) {
     field.touch();
+  }
+});
+
+/**
+ * Set all fields as untouched
+ *
+ A touched field is a field that has been focused and then blurred
+ */
+export const formUnTouchAll = walkAndDo((field: unknown) => {
+  if (isTouchableField(field)) {
+    field.unTouch();
   }
 });
 
@@ -104,15 +133,6 @@ export const formTouchAll = walkAndDo((field: unknown) => {
 export const formReset = walkAndDo((field: unknown) => {
   if (isFieldWithValue(field)) {
     field.reset();
-  }
-});
-
-/**
- * Set all fields as untouched
- */
-export const formUnTouchAll = walkAndDo((field: unknown) => {
-  if (isTouchableField(field)) {
-    field.unTouch();
   }
 });
 

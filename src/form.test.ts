@@ -5,6 +5,7 @@ import {
   formToPlain,
   formTouchAll,
   formUnTouchAll,
+  isFormDirty,
   isFormEmpty,
   isFormTouched,
   isFormTouchedAndValid,
@@ -67,10 +68,10 @@ test("is form dirty", () => {
     ],
   };
 
-  expect(isFormTouched(f)).toBeFalsy();
+  expect(isFormDirty(f)).toBeFalsy();
 
   f.a.onChange("");
-  expect(isFormTouched(f)).toBeTruthy();
+  expect(isFormDirty(f)).toBeTruthy();
 });
 
 test("is form invalid by default", () => {
@@ -89,10 +90,10 @@ test("is boolean form dirty", () => {
     a: new BooleanField(false),
   };
 
-  expect(isFormTouched(f)).toBeFalsy();
+  expect(isFormDirty(f)).toBeFalsy();
 
   f.a.toggle();
-  expect(isFormTouched(f)).toBeTruthy();
+  expect(isFormDirty(f)).toBeTruthy();
 });
 
 test("is form empty", () => {
@@ -127,11 +128,11 @@ test("very nested form - only fields", () => {
   };
 
   expect(isFormValid(f)).toBeTruthy();
-  expect(isFormTouched(f)).toBeFalsy();
+  expect(isFormDirty(f)).toBeFalsy();
 
   f.b.c.d.onChange("");
 
-  expect(isFormTouched(f)).toBeTruthy();
+  expect(isFormDirty(f)).toBeTruthy();
   expect(isFormValid(f)).toBeFalsy();
 });
 
@@ -150,11 +151,11 @@ test("very nested form - any fields", () => {
   };
 
   expect(isFormValid(f)).toBeTruthy();
-  expect(isFormTouched(f)).toBeFalsy();
+  expect(isFormDirty(f)).toBeFalsy();
 
   f.b.c.d.onChange("");
 
-  expect(isFormTouched(f)).toBeTruthy();
+  expect(isFormDirty(f)).toBeTruthy();
   expect(isFormValid(f)).toBeFalsy();
 });
 
@@ -165,7 +166,7 @@ test("formIsTouched with ListField and nested fields", () => {
   };
 
   expect(isFormTouched(f)).toBeFalsy();
-  f.a.onChange("1");
+  f.a.touch();
   expect(isFormTouched(f)).toBeTruthy();
   formUnTouchAll(f);
   expect(isFormTouched(f)).toBeFalsy();
@@ -175,11 +176,6 @@ test("formIsTouched with ListField and nested fields", () => {
   formUnTouchAll(f);
   expect(isFormTouched(f)).toBeFalsy();
 
-  // f.b.value[0].onChange("1");
-  // expect(isFormTouched(f)).toBeTruthy();
-  // formUnTouchAll(f);
-  // expect(isFormTouched(f)).toBeFalsy();
-
   const f2 = {
     b: new ListField([
       {
@@ -188,9 +184,30 @@ test("formIsTouched with ListField and nested fields", () => {
       },
     ]),
   };
+  expect(isFormDirty(f2)).toBeFalsy();
   expect(isFormTouched(f2)).toBeFalsy();
   f2.b.value[0].text.onChange("1");
+  expect(isFormDirty(f2)).toBeTruthy();
+  expect(isFormTouched(f2)).toBeFalsy();
+  f2.b.value[0].text.onBlur();
   expect(isFormTouched(f2)).toBeTruthy();
+});
+
+test("work with an array of fields", () => {
+  const f = {
+    a: [new TextField(""), new TextField("")],
+  };
+
+  expect(isFormDirty(f)).toBeFalsy();
+  expect(isFormTouched(f)).toBeFalsy();
+  f.a[0].onChange("1");
+  expect(isFormDirty(f)).toBeTruthy();
+  expect(isFormTouched(f)).toBeFalsy();
+  f.a[0].onBlur();
+  expect(isFormTouched(f)).toBeTruthy();
+  formUnTouchAll(f);
+  expect(isFormDirty(f)).toBeFalsy();
+  expect(isFormTouched(f)).toBeFalsy();
 });
 
 test("formTouchAll / formUnTouchAll", () => {

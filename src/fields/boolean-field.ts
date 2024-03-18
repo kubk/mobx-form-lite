@@ -15,6 +15,7 @@ export class BooleanField
     FieldWithValue<boolean>
 {
   isTouched = false;
+  isDirty = false;
 
   readonly initialValue: boolean;
 
@@ -30,7 +31,7 @@ export class BooleanField
 
   setValue(value: boolean) {
     this.value = value;
-    this.isTouched = true;
+    this.isDirty = true;
   }
 
   toggle() {
@@ -47,6 +48,7 @@ export class BooleanField
 
   unTouch() {
     this.isTouched = false;
+    this.isDirty = false;
   }
 
   clone() {

@@ -42,15 +42,21 @@ Let's define store that will hold the form state and logic:
 ```tsx
 import { TextField } from "mobx-form-lite";
 
-const validateUsername = (value: string) =>
-  value ? "" : "Please input your username";
+const validateEmail = (value: string) => {
+  if (!value) {
+    return "Please input your email";
+  }
+  if (!value.includes("@")) {
+    return "Please input a valid email";
+  }
+};
 
 const validatePassword = (value: string) =>
   value ? "" : "Please input your password";
 
 class LoginFormStore {
   form = {
-    username: new TextField("", { validate: validateUsername }),
+    email: new TextField("", { validate: validateEmail }),
     password: new TextField("", { validate: validatePassword }),
   };
 }
@@ -74,7 +80,7 @@ export const LoginForm = observer(() => {
         }}
         layout="vertical"
       >
-        <InputField label={"Username"} field={form.form.username} />
+        <InputField label={"Email"} field={form.form.email} />
         <InputField label={"Password"} field={form.form.password} />
 
         <Form.Item>
@@ -93,10 +99,10 @@ export const LoginForm = observer(() => {
 We'll use mock API for this example. Let's define a function that will simulate the login request:
 
 ```tsx
-const login = (username: string, password: string) =>
+const login = (email: string, password: string) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (username === "admin" && password === "pass") {
+      if (email === "admin@gmail.com" && password === "pass") {
         resolve({ token: "123" });
       } else {
         reject("Invalid username or password");
@@ -117,7 +123,7 @@ Inside the submit method we'll first touch all the fields to show validation err
 ```tsx{7,13-33}
 class LoginFormStore {
   form = {
-    username: new TextField("", { validate: validateUsername }),
+    email: new TextField("", { validate: validateEmail }),
     password: new TextField("", { validate: validatePassword }),
   };
 
@@ -155,7 +161,7 @@ The utility `formToPlain` is not required. It's a shorthand for converting the f
 
 ```ts
 login({
-  username: this.form.username.value,
+  email: this.form.email.value,
   password: this.form.password.value,
 });
 ```
@@ -178,7 +184,7 @@ export const LoginForm = observer(() => {
         }}
         layout="vertical"
       >
-        <InputField label={"Username"} field={form.form.username} />
+        <InputField label={"Email"} field={form.form.email} />
         <InputField label={"Password"} field={form.form.password} />
 
         <Form.Item>

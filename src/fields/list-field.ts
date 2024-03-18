@@ -8,6 +8,7 @@ import { deepClone } from "../deep-clone";
  */
 export class ListField<T> implements TouchableField, FieldWithValue<T[]> {
   isTouched = false;
+  isDirty = false;
 
   readonly initialValue: T[];
 
@@ -46,11 +47,13 @@ export class ListField<T> implements TouchableField, FieldWithValue<T[]> {
   }
 
   touch() {
+    this.isDirty = true;
     this.isTouched = true;
   }
 
   unTouch() {
     this.isTouched = false;
+    this.isDirty = false;
   }
 
   reset() {

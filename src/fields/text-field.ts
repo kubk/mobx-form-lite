@@ -15,7 +15,7 @@ export class TextField<T>
     FieldWithError
 {
   isTouched = false;
-  isBlurred = false;
+  isDirty = false;
 
   readonly initialValue: T;
 
@@ -32,7 +32,7 @@ export class TextField<T>
 
   onChange(value: T) {
     this.value = value;
-    this.isTouched = true;
+    this.isDirty = true;
     this.options?.onChangeCallback?.(value);
   }
 
@@ -45,16 +45,12 @@ export class TextField<T>
   }
 
   onBlur() {
-    this.isBlurred = true;
     this.touch();
-  }
-
-  get shouldShowError() {
-    return this.isTouched && this.isBlurred;
   }
 
   unTouch() {
     this.isTouched = false;
+    this.isDirty = false;
   }
 
   clone() {
