@@ -9,7 +9,9 @@ npm install mobx-form-lite antd
 We'll start with creating a `Field` component that connects [Antd](https://ant.design/) with `mobx-form-lite`:
 
 ```tsx
+import { Form, Input } from "antd";
 import { TextField } from "mobx-form-lite";
+import { observer } from "mobx-react-lite";
 
 type Props = { field: TextField<string>; label: string };
 
