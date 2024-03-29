@@ -2,11 +2,14 @@ import { makeAutoObservable } from "mobx";
 import { TouchableField } from "../interfaces/touchable-field";
 import { FieldWithValue } from "../interfaces/field-with-value";
 import { deepClone } from "../deep-clone";
+import { FieldWithError } from "../interfaces/field-with-error";
 
 /**
  * List field suitable for list of fields
  */
-export class ListField<T> implements TouchableField, FieldWithValue<T[]> {
+export class ListField<T>
+  implements TouchableField, FieldWithValue<T[]>, FieldWithError
+{
   isTouched = false;
   isDirty = false;
 

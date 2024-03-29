@@ -10,10 +10,12 @@ import {
   isFormTouched,
   isFormTouchedAndValid,
   isFormValid,
+  walkAndDo,
 } from "./form";
 import { validators } from "./validator";
 import { BooleanField } from "./fields/boolean-field";
 import { ListField } from "./fields/list-field";
+import { isFieldWithError } from "./interfaces/field-with-error";
 
 const isRequiredMessage = "is required";
 
@@ -375,4 +377,77 @@ test("validator all", () => {
   expect(isFormValid(f)).toBeTruthy();
   f.name.onChange("23223");
   expect(isFormValid(f)).toBeTruthy();
+});
+
+test("isFormValid nested", () => {
+  type AnswerType = {
+    text: TextField<string>;
+    isCorrect: BooleanField;
+  };
+
+  const createForm = () => {
+    const answers: AnswerType[] = [
+      {
+        text: new TextField("answer 1"),
+        isCorrect: new BooleanField(false),
+      },
+      {
+        text: new TextField("answer 2"),
+        isCorrect: new BooleanField(true),
+      },
+    ];
+
+    const form = {
+      front: new TextField("front", {
+        validate: validators.required(isRequiredMessage),
+      }),
+      back: new TextField("back", {
+        validate: validators.required(isRequiredMessage),
+      }),
+      answerType: new TextField<"choice" | "single">("choice"),
+      answers: new ListField<AnswerType>(answers, {
+        validate: (value) => {
+          if (form.answerType.value !== "choice") {
+            return;
+          }
+
+          if (value.length > 0) {
+            if (value.every((item) => !item.isCorrect.value)) {
+              return "At least 1 correct item is required";
+            }
+          }
+
+          if (value.length === 0) {
+            return "At least 1 answer is required";
+          }
+        },
+      }),
+    };
+
+    return form;
+  };
+
+  const collectErrors = (form: any) => {
+    const errors: string[] = [];
+    const collect = walkAndDo((field) => {
+      if (isFieldWithError(field) && field.error) {
+        errors.push(field.error);
+      }
+    });
+    collect(form);
+    return errors;
+  };
+
+  let form = createForm();
+  expect(isFormValid(form)).toBeTruthy();
+  form.answers.value[0].isCorrect.setValue(false);
+  form.answers.value[1].isCorrect.setValue(false);
+  expect(collectErrors(form)).toEqual(["At least 1 correct item is required"]);
+  expect(isFormValid(form)).toBeFalsy();
+
+  form = createForm();
+  expect(isFormValid(form)).toBeTruthy();
+  form.answers.setValue([]);
+  expect(collectErrors(form)).toEqual(["At least 1 answer is required"]);
+  expect(isFormValid(form)).toBeFalsy();
 });

@@ -18,4 +18,5 @@ export {
   isFormTouchedAndValid,
   isFormEmpty,
   isFormTouchedAndHasError,
+  walkAndDo,
 } from "./form";
