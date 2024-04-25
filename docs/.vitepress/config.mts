@@ -4,11 +4,28 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "mobx-form-lite",
   base: "/mobx-form-lite",
-  description: "mobx-form-lite documentation",
+  description: "mobx-form-lite | Mobx form library",
+
   lastUpdated: true,
   sitemap: {
     hostname: 'https://kubk.github.io/mobx-form-lite/',
   },
+
+  head: [
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-FFVNRL9XPJ' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FFVNRL9XPJ');`
+    ]
+  ],
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 
