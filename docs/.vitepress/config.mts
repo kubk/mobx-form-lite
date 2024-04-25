@@ -8,22 +8,25 @@ export default defineConfig({
 
   lastUpdated: true,
   sitemap: {
-    hostname: 'https://kubk.github.io/mobx-form-lite/',
+    hostname: "https://kubk.github.io/mobx-form-lite/",
   },
 
   head: [
     [
-      'script',
-      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-FFVNRL9XPJ' }
+      "script",
+      {
+        async: "",
+        src: "https://www.googletagmanager.com/gtag/js?id=G-FFVNRL9XPJ",
+      },
     ],
     [
-      'script',
+      "script",
       {},
       `window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-FFVNRL9XPJ');`
-    ]
+      gtag('config', 'G-FFVNRL9XPJ');`,
+    ],
   ],
 
   themeConfig: {
