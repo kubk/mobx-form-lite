@@ -5,6 +5,10 @@ export default defineConfig({
   title: "mobx-form-lite",
   base: "/mobx-form-lite",
   description: "mobx-form-lite documentation",
+  lastUpdated: true,
+  sitemap: {
+    hostname: 'https://kubk.github.io/mobx-form-lite/',
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 
