@@ -3,7 +3,7 @@
 Field functions are used to manipulate the form as a whole. They are used to check the form state, reset it, and more.
 
 | **Function**             | **Description**                                                                                 |
-| ------------------------ |-------------------------------------------------------------------------------------------------|
+| ------------------------ | ----------------------------------------------------------------------------------------------- |
 | isFormValid              | Check if the form is valid                                                                      |
 | formReset                | Reset all fields to their initial values                                                        |
 | formToPlain              | Convert form to plain object (doesn't support TypeScript type inference yet)                    |
