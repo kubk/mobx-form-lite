@@ -26,4 +26,4 @@ To check out docs, visit [https://kubk.github.io/mobx-form-lite/](https://kubk.g
 
 ### State
 
-The package is close to a major release. The API is not stable and may change in the future. Check the unit tests to see what the library can do.
+The package is close to a major release. If the documentation doesn't answer your questions, please check the unit tests.
