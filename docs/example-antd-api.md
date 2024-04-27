@@ -115,14 +115,14 @@ const login = (email: string, password: string) =>
 
 ### Updated store
 
-`mobx-form-lite` is a small library that provides only the form state and validation logic. It does not provide any API-related logic. Thus, we need to add it manually:
+`mobx-form-lite` is a small library that provides only the form state and validation logic. It won't provide any API-related logic. Let's add it:
 
 - A loader state to indicate that the form is submitting
 - A submit method that will send the form data to the server
 
-Inside the submit method we'll first touch all the fields to show validation errors. Then we'll check if the form is valid and if so, we'll send the form data to the server:
+You're free to use any request library you like. We'll use the `isSubmitting` flag to show a loader on the submit button:
 
-```tsx{7,13-33}
+```tsx{7,13-34}
 class LoginFormStore {
   form = {
     email: new TextField("", { validate: validateEmail }),
@@ -159,7 +159,8 @@ class LoginFormStore {
 }
 ```
 
-The utility `formToPlain` is not required. It's a shorthand for converting the form state to a plain object. Manual alternative:
+- Inside the submit method, we first touch all the fields to display validation errors. Then we check if the form is valid, and if it is, we send the form data to the server.
+- The utility `formToPlain` is not required. It's a shorthand for converting the form state to a plain object. Manual alternative:
 
 ```ts
 login({
