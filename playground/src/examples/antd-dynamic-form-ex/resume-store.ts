@@ -14,7 +14,7 @@ const validateRequired = (value: unknown) => {
   }
 };
 
-const isInteger = (value: unknown) => {
+const validateInt = (value: unknown) => {
   if (!Number.isInteger(Number(value))) {
     return "Please enter a valid number";
   }
@@ -36,7 +36,7 @@ export type ExperienceItemType = {
 const createExperienceItem = () => ({
   company: new TextField("", { validate: validateRequired }),
   years: new TextField("", {
-    validate: validators.all(validateRequired, isInteger),
+    validate: validators.all(validateRequired, validateInt),
   }),
 });
 // #endregion createExp
@@ -48,7 +48,7 @@ export class ResumeStore {
     lastname: new TextField("", { validate: validateRequired }),
     fatherName: new TextField(""),
     age: new TextField("", {
-      validate: validators.all(validateRequired, isInteger),
+      validate: validators.all(validateRequired, validateInt),
     }),
     jobTitle: new TextField("", { validate: validateRequired }),
     experience: new ListField<ExperienceItemType>([], {
