@@ -35,8 +35,6 @@ jobs:
         run: npm ci
       - name: Build with VitePress
         run: npm run docs:build
-      - name: Google
-        run: cp google0d113eca589ebed8.html docs/.vitepress/dist/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
