@@ -41,6 +41,7 @@ export default defineConfig({
         text: "Tutorials",
         items: [
           { text: "Login form + Antd and API", link: "/example-antd-api" },
+          { text: "Nested dynamic form", link: "/example-nested-dynamic-form" },
           { text: "Next.js", link: "/example-nextjs" },
         ],
       },

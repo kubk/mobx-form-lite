@@ -2,7 +2,7 @@
 
 If you know MobX, you already know `mobx-form-lite`. The library is just a set of stores such as `TextField`, `BooleanField`, and helper functions like `isFormTouched`, `isFormValid` that operate on those stores.
 
-### Simple profile form
+## Simple profile form
 
 Let's build a simple profile form. Run this command to install the library:
 
@@ -18,9 +18,11 @@ And your `InputField` may look like this:
 
 <<< @/snippets/quick-start/2.tsx
 
+::: info
 You write a field component once to adapt to your UI kit and then reuse it anywhere in the project. The `mobx-form-lite` will release ready-to-use fields for the popular UI kits in the future.
+:::
 
-### Adding API
+## Adding API
 
 If the form's store logic becomes more complicated, you can extract it into a dedicated store and use `TextField` as you would with any other MobX store.
 

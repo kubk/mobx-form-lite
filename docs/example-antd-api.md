@@ -11,28 +11,28 @@ We'll start with creating a `Field` component that connects [Antd](https://ant.d
 <<< @/snippets/example-antd-api/1.tsx
 
 ::: info
-In the future `mobx-form-lite` will provide a set of such ready-to-use components for popular UI libraries.
+You write a field component once to adapt to your UI kit and then reuse it anywhere in the project. The `mobx-form-lite` will release ready-to-use fields for the popular UI kits in the future.
 :::
 
-### Mobx store
+## Mobx store
 
 Let's define store that will hold the form state and logic:
 
 <<< @/snippets/example-antd-api/2.tsx
 
-### React component
+## React component
 
 It is enough to render a React component like this:
 
 <<< @/snippets/example-antd-api/3.tsx
 
-### Connecting to API
+## Connecting to API
 
 We'll use mock API for this example. Let's define a function that will simulate the login request:
 
 <<< @/snippets/example-antd-api/4.tsx
 
-### Updated store
+## Updated store
 
 `mobx-form-lite` is a small library that provides only the form state and validation logic. It won't provide any API-related logic. Let's add it:
 
@@ -50,7 +50,7 @@ You're free to use any request library you like. We'll use the `isSubmitting` fl
 
 It recursively converts the form state to a plain object, which is useful when you have nested fields.
 
-### Updated React component
+## Updated React component
 
 <<< @/snippets/example-antd-api/7.tsx{10,22}
 

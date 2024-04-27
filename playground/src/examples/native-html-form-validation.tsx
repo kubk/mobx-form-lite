@@ -9,10 +9,6 @@ import {
 } from "mobx-form-lite";
 
 const validateEmail = (value: string) => {
-  if (!value) {
-    return "Please enter email";
-  }
-
   if (!value.includes("@")) {
     return "Please enter a valid email";
   }

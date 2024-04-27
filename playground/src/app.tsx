@@ -9,6 +9,9 @@ import { NativeHtmlFormPersist } from "./examples/native-html-form-adapters-pers
 import NativeHtmlFormPersistCode from "./examples/native-html-form-adapters-persist.tsx?raw";
 import { useQueryParam } from "./use-query-param.ts";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import { ResumeForm } from "./examples/antd-dynamic-form-ex/resume-form.tsx";
+import AntdDynamicFormCode from "./examples/antd-dynamic-form-ex/resume-form.tsx?raw";
+import { ResumeStoreProvider } from "./examples/antd-dynamic-form-ex/resume-store-context.tsx";
 
 const examples: Array<{
   title: string;
@@ -39,6 +42,16 @@ const examples: Array<{
     name: "html5_native_persist",
     component: <NativeHtmlFormPersist />,
     code: NativeHtmlFormPersistCode,
+  },
+  {
+    title: "ANTD nested form",
+    name: "antd_nested_form",
+    component: (
+      <ResumeStoreProvider>
+        <ResumeForm />
+      </ResumeStoreProvider>
+    ),
+    code: AntdDynamicFormCode,
   },
 ];
 
