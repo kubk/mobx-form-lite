@@ -23,7 +23,8 @@ export class TextField<T>
     public value: T,
     public readonly options?: {
       validate?: (value: any) => string | undefined;
-      onChangeCallback?: (newValue: T) => void;
+      afterChange?: (newValue: T) => void;
+      beforeChange?: (oldValue: unknown) => T;
     },
   ) {
     makeAutoObservable(this, { options: false }, { autoBind: true });
@@ -31,9 +32,11 @@ export class TextField<T>
   }
 
   onChange(value: T) {
-    this.value = value;
+    this.value = this.options?.beforeChange
+      ? this.options.beforeChange(value)
+      : value;
     this.isDirty = true;
-    this.options?.onChangeCallback?.(value);
+    this.options?.afterChange?.(value);
   }
 
   get error() {
