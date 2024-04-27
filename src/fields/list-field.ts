@@ -17,7 +17,7 @@ export class ListField<T>
 
   constructor(
     public value: T[],
-    public options?: {
+    public readonly options?: {
       validate?: (value: T[]) => string | undefined;
     },
   ) {

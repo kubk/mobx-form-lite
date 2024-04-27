@@ -21,7 +21,7 @@ export class BooleanField
 
   constructor(
     public value: boolean,
-    public options?: {
+    public readonly options?: {
       validate?: (value: any) => string | undefined;
     },
   ) {

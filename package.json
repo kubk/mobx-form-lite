@@ -1,6 +1,6 @@
 {
   "name": "mobx-form-lite",
-  "version": "0.9.61",
+  "version": "0.9.62",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/mobx-form-lite.js",
