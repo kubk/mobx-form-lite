@@ -78,7 +78,7 @@ How to use it in the store:
 
 <<< ../playground/src/examples/antd-dynamic-form-ex/resume-store.ts#manageExp
 
-As you can see, the `ListStore` already provides some helpers methods to manage an array. How to add experience calculation based on these fields? Since we're using MobX, we can easily calculate the total experience using `computed`:
+As you can see, the `ListStore` already provides some helper methods to manage an array. How to add experience calculation based on these fields? Since we're using MobX, we can easily calculate the total experience using `computed`:
 
 <<< ../playground/src/examples/antd-dynamic-form-ex/resume-store.ts#sumExp
 
@@ -92,7 +92,7 @@ Let's create `InputField` and `SelectField` components that connect [Antd](https
 <<< ../playground/src/examples/antd-dynamic-form-ex/select-field.tsx
 
 ::: info
-You write a field component once to adapt to your UI kit and then reuse it anywhere in the project. The `mobx-form-lite` will release ready-to-use fields for the popular UI kits in the future.
+You write a field component once to adapt it to your UI kit and then reuse it anywhere in the project. The `mobx-form-lite` will release ready-to-use fields for the popular UI kits in the future.
 :::
 
 ## Store context
@@ -116,7 +116,7 @@ The total experience is a computed value. It's a separate component to reduce th
 
 ## Final result
 
-This is how the root form component looks like:
+This is how the root form component looks:
 
 <<< ../playground/src/examples/antd-dynamic-form-ex/resume-form.tsx
 

@@ -11,7 +11,7 @@ We'll start with creating a `Field` component that connects [Antd](https://ant.d
 <<< @/snippets/example-antd-api/1.tsx
 
 ::: info
-You write a field component once to adapt to your UI kit and then reuse it anywhere in the project. The `mobx-form-lite` will release ready-to-use fields for the popular UI kits in the future.
+You write a field component once to adapt it to your UI kit and then reuse it anywhere in the project. The `mobx-form-lite` will release ready-to-use fields for the popular UI kits in the future.
 :::
 
 ## Mobx store
