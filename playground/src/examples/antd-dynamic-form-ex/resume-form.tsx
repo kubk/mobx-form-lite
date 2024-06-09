@@ -30,9 +30,8 @@ export const ResumeForm = observer(() => {
               label="Occupation"
               field={form.jobTitle}
               options={[
-                { label: "Developer", value: "developer" },
                 { label: "Con man", value: "conman" },
-                { label: "Designer", value: "designer" },
+                { label: "Fortune teller", value: "fortune_teller" },
               ]}
             />
           </Flex>

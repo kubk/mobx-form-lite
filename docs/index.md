@@ -10,7 +10,7 @@ hero:
       text: Quick start
       link: /quick-start
     - theme: alt
-      text: Examples
+      text: Tutorials
       link: /example-antd-api
 
 features:

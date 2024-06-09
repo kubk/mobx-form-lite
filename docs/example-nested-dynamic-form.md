@@ -66,7 +66,7 @@ For the demo we'll write simple validation rules, but you can use any validation
 
 <<< ../playground/src/examples/antd-dynamic-form-ex/resume-store.ts#formstore
 
-Note that `validators` is imported from `mobx-form-lite`.
+Note that `validators` is imported from `mobx-form-lite`. Feel free to write your own functions for validator composition.
 
 ## Managing experience list
 
