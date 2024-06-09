@@ -17,7 +17,9 @@ features:
   - title: 🛠️ Type-safe
     details: Including nested forms. No JSON-based configuration
   - title: 🚀 Performant
-    details: Avoids unnecessary re-renders, thanks to MobX.
+    details: Avoids unnecessary re-renders, thanks to MobX
   - title: 🪶 Lightweight
-    details: ~1 kb gzipped because MobX does all the heavy lifting.
+    details: ~1 kb gzipped because MobX does all the heavy lifting
+  - title: 🔄 Flexible
+    details:  Supports all the possible ways of defining MobX store
 ---
