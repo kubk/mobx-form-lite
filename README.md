@@ -12,7 +12,7 @@
 - 🛠️ Type-safe, including nested forms. No JSON-based configuration.
 - 🪶 Lightweight ([~1 kb](https://github.com/kubk/mobx-form-lite/blob/b1d52f9f604e056dca43707fc0bec752f931b01e/package.json#L24) gzipped) since MobX does all the heavy lifting.
 - 🚀 Performant. It avoids unnecessary re-renders, thanks to MobX.
-- 🔄 Flexible. Supports all the possible ways of defining MobX stores, such as `﻿makeAutoObservable`, `﻿useLocalObservable`, or decorators.
+- 🔄 Flexible. Supports all the possible ways of defining MobX store, such as `﻿makeAutoObservable`, `﻿useLocalObservable`, or decorators.
 
 ### Installation
 
