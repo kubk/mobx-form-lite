@@ -1,6 +1,6 @@
 # Nested dynamic form
 
-In this example we'll learn how to create a nested dynamic form with Mobx using `mobx-form-lite`. Make sure you have installed all the needed libraries to start:
+In this example we'll learn how to create a nested dynamic form with Mobx using `mobx-form-lite`. There is clickable demo in the end of the article. Make sure you have installed all the needed libraries to start:
 
 ```bash
 npm install mobx-form-lite antd

@@ -1,6 +1,6 @@
 # Login form
 
-In this example we'll create a login form with Ant Design and API. First make sure you have installed all the needed libraries:
+In this example we'll create a login form with Ant Design and API. There is clickable demo in the end of the article. First make sure you have installed all the needed libraries:
 
 ```bash
 npm install mobx-form-lite antd
