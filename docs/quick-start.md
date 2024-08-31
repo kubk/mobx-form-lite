@@ -22,12 +22,18 @@ And your `InputField` may look like this:
 You write a field component once to adapt it to your UI kit and then reuse it anywhere in the project. The `mobx-form-lite` will release ready-to-use fields for the popular UI kits in the future.
 :::
 
-## Adding API
+## Using a separate store
 
-If the form's store logic becomes more complicated, you can extract it into a dedicated store and use `TextField` as you would with any other MobX store.
+If the form's store logic becomes more complicated, you can extract it into a dedicated store and use `TextField` as you would with any other MobX store. In the future the store can even have multiple forms.
 
 <<< @/snippets/quick-start/3.tsx
 
 And use it the same way as before:
 
 <<< @/snippets/quick-start/4.tsx
+
+## What's next
+
+You can find more examples including advanced ones:
+- [Login form with Ant Design and API](/example-antd-api)
+- [Dynamic form with nested fields](/example-nested-dynamic-form)
