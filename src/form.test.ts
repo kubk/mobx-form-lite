@@ -467,3 +467,17 @@ test("isFormValid nested", () => {
   expect(collectErrors(form)).toEqual(["At least 1 answer is required"]);
   expect(isFormValid(form)).toBeFalsy();
 });
+
+test("is form valid with list field and text fields", () => {
+  const form = {
+    a: new ListField([
+      new TextField("a", { validate: validators.required("a is required") }),
+    ]),
+  };
+
+  expect(isFormValid(form)).toBeTruthy();
+  form.a.value[0].onChange("");
+  expect(isFormValid(form)).toBeFalsy();
+  form.a.value[0].onChange("a");
+  expect(isFormValid(form)).toBeTruthy();
+});

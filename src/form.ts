@@ -14,15 +14,19 @@ const walkAndCheck = (
   iterateArray: "some" | "every",
   defaultValue = false,
 ) => {
-  return (form: Form) => {
+  return (form: Form): boolean => {
     return Object.values(form)[iterateArray]((value) => {
       if (value instanceof TextField || value instanceof BooleanField) {
         return check(value);
       }
       if (value instanceof ListField) {
         const listFieldChecked = check(value);
-        const listItemsChecked = value.value[iterateArray](
-          walkAndCheck(check, iterateArray, defaultValue),
+        const listItemsChecked: boolean = value.value[iterateArray](
+          (listItem) => {
+            return listItem instanceof TextField
+              ? check(listItem)
+              : walkAndCheck(check, iterateArray, defaultValue)(listItem);
+          },
         );
         return [listItemsChecked, listFieldChecked][iterateArray](Boolean);
       }
