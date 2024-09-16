@@ -317,6 +317,22 @@ test("form reset - nested", () => {
   expect(f.b.c.f.value.length).toBe(2);
 });
 
+test("form reset nested with validation", () => {
+  const validate = (v: any) => (!v ? "Required" : undefined);
+
+  const list = new ListField([
+    new TextField("1", {
+      validate: validate,
+    }),
+  ]);
+
+  list.value[0].onChange("2");
+
+  list.reset();
+
+  expect(list.value[0].value).toBe("1");
+});
+
 test("formToPlain", () => {
   const f = {
     a: new TextField("a", { validate: validators.required(isRequiredMessage) }),
