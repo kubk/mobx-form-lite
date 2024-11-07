@@ -317,6 +317,28 @@ test("form reset - nested", () => {
   expect(f.b.c.f.value.length).toBe(2);
 });
 
+test("form reset to initial values", () => {
+  const f = {
+    a: new TextField(''),
+    b: new TextField(''),
+    c: new TextField<string|null>(null),
+  }
+
+  f.a.onChange('a');
+  f.b.onChange('b');
+  f.c.onChange('c');
+
+  formReset(f);
+
+  expect(formToPlain(f)).toMatchInlineSnapshot(`
+    {
+      "a": "",
+      "b": "",
+      "c": null,
+    }
+  `);
+})
+
 test("form reset nested with validation", () => {
   const validate = (v: any) => (!v ? "Required" : undefined);
 
