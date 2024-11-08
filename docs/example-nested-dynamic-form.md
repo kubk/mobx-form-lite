@@ -8,7 +8,7 @@ npm install mobx-form-lite antd
 
 ## Task
 
-We'll create a form that allows adding and removing fields dynamically:
+We'll create a form that allows adding and removing fields dynamically. Fully runnable demo is available at the end of the article.
 
 ![Nested dynamic form example](img/nested-dynamic-form/1.png)
 
@@ -114,7 +114,7 @@ The total experience is a computed value. It's a separate component to reduce th
 
 <<< ../playground/src/examples/antd-dynamic-form-ex/total-experience.tsx
 
-## Final result
+## Runnable demo
 
 This is how the root form component looks:
 

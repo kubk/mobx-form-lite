@@ -65,11 +65,13 @@ describe("TextField", () => {
 
     autorun(() => {
       if (field.isTouched) {
+        // Reading .error in reactive context
         field.error;
       }
     });
 
     field.onChange("val 3");
+    // The validation is lazy: it's triggered only when the error is read in reactive context
     expect(calledTimes).toBe(0);
 
     field.onBlur();

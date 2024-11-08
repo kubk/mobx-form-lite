@@ -319,14 +319,14 @@ test("form reset - nested", () => {
 
 test("form reset to initial values", () => {
   const f = {
-    a: new TextField(''),
-    b: new TextField(''),
-    c: new TextField<string|null>(null),
-  }
+    a: new TextField(""),
+    b: new TextField(""),
+    c: new TextField<string | null>(null),
+  };
 
-  f.a.onChange('a');
-  f.b.onChange('b');
-  f.c.onChange('c');
+  f.a.onChange("a");
+  f.b.onChange("b");
+  f.c.onChange("c");
 
   formReset(f);
 
@@ -337,7 +337,7 @@ test("form reset to initial values", () => {
       "c": null,
     }
   `);
-})
+});
 
 test("form reset nested with validation", () => {
   const validate = (v: any) => (!v ? "Required" : undefined);
