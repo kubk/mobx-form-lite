@@ -158,6 +158,8 @@ const getValueFromField = (field: unknown): unknown => {
       ]),
     );
   }
+  // Return primitive values as-is
+  return field;
 };
 
 // TODO: Add recursive typescript return type

@@ -379,6 +379,7 @@ test("formToPlain", () => {
         d: "d",
         e: true,
         f: ["init 1", "init 2"],
+        k: null,
       },
     },
   });
@@ -416,6 +417,22 @@ test("validator all", () => {
   f.name.onChange("23223");
   expect(isFormValid(f)).toBeTruthy();
 });
+
+test("formToPlain - missing primitives bug", () => {
+  const f = {
+    a: new TextField("a"),
+    b: 1
+  };
+
+  const plain = formToPlain(f);
+
+  expect(plain).toMatchInlineSnapshot(`
+    {
+      "a": "a",
+      "b": 1,
+    }
+  `);
+})
 
 test("isFormValid nested", () => {
   type AnswerType = {
