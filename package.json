@@ -39,7 +39,6 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.0.2",
     "@vitest/coverage-v8": "^3.0.8",
-    "conditional-type-checks": "^1.0.5",
     "microbundle": "^0.15.1",
     "prettier": "^3.2.5",
     "size-limit": "^11.0.2",
