@@ -6,5 +6,9 @@ export default defineConfig({
             provider: 'v8',
             reporter: ['text'],
         },
+        typecheck: {
+            enabled: true,
+            include: ['**/*.test-d.ts'],
+        },
     },
 })

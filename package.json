@@ -1,6 +1,6 @@
 {
   "name": "mobx-form-lite",
-  "version": "0.9.65",
+  "version": "0.9.7",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/mobx-form-lite.js",
@@ -9,9 +9,10 @@
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
-    "test": "npx vitest --dir=src",
+    "test": "npx vitest --dir=src --typecheck",
     "test:coverage": "npx vitest run --dir=src/ --coverage",
     "test:size": "npx size-limit",
+    "prettier": "npx prettier --write src/**/*.ts",
     "typecheck": "npx tsc --noEmit",
     "prepublishOnly": "npm run build",
     "docs:dev": "vitepress dev docs",
@@ -37,13 +38,14 @@
   "license": "MIT",
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.0.2",
-    "@vitest/coverage-v8": "^0.34.6",
+    "@vitest/coverage-v8": "^3.0.8",
+    "conditional-type-checks": "^1.0.5",
     "microbundle": "^0.15.1",
     "prettier": "^3.2.5",
     "size-limit": "^11.0.2",
-    "typescript": "^5.3.3",
+    "typescript": "^5.8.2",
     "vitepress": "^1.0.0-rc.45",
-    "vitest": "^0.34.6"
+    "vitest": "^3.0.8"
   },
   "peerDependencies": {
     "mobx": "^5.0.0 || ^6.0.0"

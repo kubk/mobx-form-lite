@@ -11,7 +11,6 @@ export {
   formTouchAll,
   formUnTouchAll,
   formReset,
-  formToPlain,
   isFormDirty,
   isFormValid,
   isFormTouched,
@@ -20,3 +19,4 @@ export {
   isFormTouchedAndHasError,
   walkAndDo,
 } from "./form";
+export { formToPlain } from './form-to-plain'
