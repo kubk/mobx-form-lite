@@ -1,11 +1,10 @@
 import { TextField } from "./fields/text-field";
 import { BooleanField } from "./fields/boolean-field";
-
 import { ListField } from "./fields/list-field";
 import { isTouchableField } from "./interfaces/touchable-field";
 import { isFieldWithValue } from "./interfaces/field-with-value";
 
-type Form = Record<string, unknown>;
+export type Form = Record<string, unknown>;
 
 const walkAndCheck = (
   check: (
@@ -140,36 +139,3 @@ export const formReset = walkAndDo((field: unknown) => {
   }
 });
 
-const getValueFromField = (field: unknown): unknown => {
-  if (field instanceof TextField || field instanceof BooleanField) {
-    return field.value;
-  }
-  if (field instanceof ListField) {
-    return field.value.map(getValueFromField);
-  }
-  if (Array.isArray(field)) {
-    return field.map(getValueFromField);
-  }
-  if (typeof field === "object" && field !== null) {
-    return Object.fromEntries(
-      Object.entries(field).map(([key, value]) => [
-        key,
-        getValueFromField(value),
-      ]),
-    );
-  }
-  // Return primitive values as-is
-  return field;
-};
-
-// TODO: Add recursive typescript return type
-/**
- * Convert form to plain object recursively
- */
-export const formToPlain = (form: Form): any => {
-  const result: Form = {};
-  Object.entries(form).forEach(([key, value]) => {
-    result[key] = getValueFromField(value);
-  });
-  return result;
-};

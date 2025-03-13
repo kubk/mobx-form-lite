@@ -2,7 +2,6 @@ import { expect, test } from "vitest";
 import { TextField } from "./fields/text-field";
 import {
   formReset,
-  formToPlain,
   formTouchAll,
   formUnTouchAll,
   isFormDirty,
@@ -16,6 +15,7 @@ import { validators } from "./validator";
 import { BooleanField } from "./fields/boolean-field";
 import { ListField } from "./fields/list-field";
 import { isFieldWithError } from "./interfaces/field-with-error";
+import { formToPlain } from "./form-to-plain";
 
 const isRequiredMessage = "is required";
 
