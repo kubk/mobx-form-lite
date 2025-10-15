@@ -1,0 +1,325 @@
+# mobx-form-lite
+
+Lightweight form management for MobX. If you know MobX, you already know mobx-form-lite.
+
+## Core Concept
+
+Forms are plain objects containing field stores. Fields are MobX stores with validation and state tracking.
+
+## Fields
+
+### TextField<T>
+Text field for inputs and textareas.
+
+```typescript
+import { TextField, validators } from "mobx-form-lite";
+
+// Basic usage
+const name = new TextField("");
+
+// With validation
+const email = new TextField("", {
+  validate: (value) => value.includes("@") ? undefined : "Invalid email"
+});
+
+// With built-in validator
+const required = new TextField("", {
+  validate: validators.required("Field is required")
+});
+
+// Methods
+name.onChange("new value");  // Update value
+name.onBlur();               // Mark as touched
+name.touch();                // Mark as touched
+name.reset();                // Reset to initial value
+name.value;                  // Get current value
+name.error;                  // Get validation error (computed)
+name.isTouched;              // Check if touched
+name.isDirty;                // Check if changed
+```
+
+### BooleanField
+Boolean field for checkboxes.
+
+```typescript
+import { BooleanField } from "mobx-form-lite";
+
+const agree = new BooleanField(false, {
+  validate: (value) => value ? undefined : "Must agree"
+});
+
+agree.toggle();              // Toggle value
+agree.setValue(true);        // Set value
+agree.reset();               // Reset to initial
+```
+
+### ListField<T>
+Dynamic list of fields or values.
+
+```typescript
+import { ListField, TextField } from "mobx-form-lite";
+
+// List of text fields
+const items = new ListField([
+  new TextField("item 1"),
+  new TextField("item 2")
+]);
+
+// List of complex objects
+type Experience = {
+  company: TextField<string>;
+  years: TextField<string>;
+};
+
+const experience = new ListField<Experience>([], {
+  validate: (value) => value.length > 0 ? undefined : "At least 1 required"
+});
+
+// Methods
+items.push(new TextField("item 3"));
+items.removeByIndex(0);
+items.removeByCondition(item => item.value === "");
+items.setValue([...newItems]);
+items.reset();
+```
+
+## Form Functions
+
+Helper functions to work with form objects containing fields.
+
+```typescript
+import {
+  isFormValid,
+  isFormTouched,
+  isFormDirty,
+  isFormEmpty,
+  isFormTouchedAndValid,
+  isFormTouchedAndHasError,
+  formTouchAll,
+  formUnTouchAll,
+  formReset,
+  formToPlain
+} from "mobx-form-lite";
+
+const form = {
+  name: new TextField(""),
+  email: new TextField(""),
+  nested: {
+    age: new TextField("")
+  }
+};
+
+// Check form state
+isFormValid(form);              // All fields valid
+isFormTouched(form);            // Any field touched
+isFormDirty(form);              // Any field changed
+isFormEmpty(form);              // All fields empty
+isFormTouchedAndValid(form);    // Any field touched and valid
+isFormTouchedAndHasError(form); // Any field touched with error
+
+// Manipulate form
+formTouchAll(form);             // Mark all fields as touched
+formUnTouchAll(form);           // Mark all fields as untouched
+formReset(form);                // Reset all fields to initial values
+
+// Extract values
+const plain = formToPlain(form);  // { name: "", email: "", nested: { age: "" } }
+```
+
+## Validators
+
+Built-in validator helpers.
+
+```typescript
+import { validators } from "mobx-form-lite";
+
+// Required validator
+const name = new TextField("", {
+  validate: validators.required("Name is required")
+});
+
+// Compose multiple validators (runs until first error)
+const age = new TextField("", {
+  validate: validators.all(
+    validators.required("Required"),
+    (value) => /^\d+$/.test(value) ? undefined : "Must be a number",
+    (value) => Number(value) > 0 ? undefined : "Must be positive"
+  )
+});
+
+// Custom validators return undefined for valid, error string for invalid
+const customValidator = (value: any) => {
+  return value.length > 5 ? undefined : "Too short";
+};
+```
+
+## Patterns
+
+### Simple Form
+
+```typescript
+import { makeAutoObservable } from "mobx";
+import { TextField, validators, isFormValid } from "mobx-form-lite";
+
+const form = {
+  name: new TextField("", { validate: validators.required("Required") }),
+  email: new TextField("", {
+    validate: (v) => v.includes("@") ? undefined : "Invalid email"
+  })
+};
+
+const handleSubmit = () => {
+  if (!isFormValid(form)) return;
+  console.log(formToPlain(form));
+};
+```
+
+### Form with Store
+
+```typescript
+class ProfileStore {
+  form = {
+    name: new TextField(""),
+    email: new TextField("")
+  };
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  get isValid() {
+    return isFormValid(this.form);
+  }
+
+  submit() {
+    if (!this.isValid) return;
+    const data = formToPlain(this.form);
+    // Submit data...
+  }
+}
+```
+
+### Dynamic Nested Forms
+
+```typescript
+type Experience = {
+  company: TextField<string>;
+  years: TextField<string>;
+};
+
+class ResumeStore {
+  form = {
+    name: new TextField("", { validate: validators.required("Required") }),
+    experience: new ListField<Experience>([], {
+      validate: (v) => v.length > 0 ? undefined : "At least 1 required"
+    })
+  };
+
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  addExperience() {
+    this.form.experience.push({
+      company: new TextField("", {
+        validate: validators.required("Required")
+      }),
+      years: new TextField("", {
+        validate: (v) => /^\d+$/.test(v) ? undefined : "Must be number"
+      })
+    });
+  }
+
+  removeExperience(index: number) {
+    this.form.experience.removeByIndex(index);
+  }
+
+  get totalYears() {
+    return this.form.experience.value.reduce((sum, item) => {
+      const years = Number(item.years.value);
+      return sum + (isNaN(years) ? 0 : years);
+    }, 0);
+  }
+}
+```
+
+### Validation Patterns
+
+```typescript
+// Show errors only after touch
+field.isTouched && field.error
+
+// Show errors on submit
+formTouchAll(form);
+if (!isFormValid(form)) return;
+
+// Dependent validation
+const form = {
+  password: new TextField(""),
+  confirmPassword: new TextField("", {
+    validate: (value) => {
+      return value === form.password.value
+        ? undefined
+        : "Passwords don't match";
+    }
+  })
+};
+
+// Cross-field validation in ListField
+const answers = new ListField<Answer>([], {
+  validate: (value) => {
+    if (value.every(item => !item.isCorrect.value)) {
+      return "At least 1 correct answer required";
+    }
+  }
+});
+```
+
+### React Integration
+
+```typescript
+import { observer } from "mobx-react-lite";
+
+const InputField = observer(({ field, label }) => (
+  <div>
+    <label>{label}</label>
+    <input
+      value={field.value}
+      onChange={(e) => field.onChange(e.target.value)}
+      onBlur={() => field.onBlur()}
+    />
+    {field.isTouched && field.error && <span>{field.error}</span>}
+  </div>
+));
+
+const ProfileForm = observer(() => {
+  const [store] = useState(() => new ProfileStore());
+
+  return (
+    <form onSubmit={(e) => { e.preventDefault(); store.submit(); }}>
+      <InputField field={store.form.name} label="Name" />
+      <InputField field={store.form.email} label="Email" />
+      <button disabled={!store.isValid}>Submit</button>
+    </form>
+  );
+});
+```
+
+## Key Features
+
+- **Type-safe**: Full TypeScript support including nested forms
+- **Lightweight**: ~1kb gzipped
+- **Performant**: Minimal re-renders thanks to MobX
+- **Flexible**: Works with makeAutoObservable, useLocalObservable, or decorators
+- **Testable**: Form logic is just MobX stores, easily testable without React
+
+## Form Structure
+
+Forms can be:
+- Flat objects: `{ a: TextField, b: TextField }`
+- Nested objects: `{ user: { name: TextField, email: TextField } }`
+- Arrays: `{ items: [TextField, TextField] }`
+- ListFields: `{ items: ListField<TextField> }`
+- Mixed with primitives: `{ a: TextField, count: 1, enabled: true }`
+
+All helper functions (isFormValid, formReset, etc.) work recursively on any structure.
