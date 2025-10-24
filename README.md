@@ -13,6 +13,7 @@
 - 🪶 Lightweight ([~1 kb](https://github.com/kubk/mobx-form-lite/blob/b1d52f9f604e056dca43707fc0bec752f931b01e/package.json#L24) gzipped) since MobX does all the heavy lifting.
 - 🚀 Performant. It avoids unnecessary re-renders, thanks to MobX.
 - 🔄 Flexible. Supports all the possible ways of defining MobX store, such as `﻿makeAutoObservable`, `﻿useLocalObservable`, or decorators.
+- 🤖 AI-ready. Includes [LLM-optimized documentation](https://kubk.github.io/mobx-form-lite/llms.txt) for faster development with AI coding assistants.
 
 ### Installation
 
