@@ -52,6 +52,12 @@ export default defineConfig({
           { text: "Functions", link: "/api-functions" },
         ],
       },
+      {
+        text: "Resources",
+        items: [
+          { text: "LLMs.txt", link: "/llms.txt" },
+        ],
+      },
     ],
 
     socialLinks: [
