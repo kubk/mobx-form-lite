@@ -55,7 +55,7 @@ export default defineConfig({
       {
         text: "Resources",
         items: [
-          { text: "LLMs.txt", link: "/llms.txt" },
+          { text: "LLMs.txt", link: "/mobx-form-lite/llms.txt" },
         ],
       },
     ],
