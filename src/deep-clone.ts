@@ -1,4 +1,4 @@
-import { isCloneableField } from "./interfaces/cloneable-field";
+import { isCloneableField } from './interfaces/cloneable-field'
 
 /**
  * Uses browser's structuredClone if available,
@@ -10,13 +10,13 @@ import { isCloneableField } from "./interfaces/cloneable-field";
  */
 export const deepClone = <T>(obj: T): T => {
   if (Array.isArray(obj)) {
-    return obj.map(deepClone) as any as T;
+    return obj.map(deepClone) as any as T
   }
   if (isCloneableField(obj)) {
-    return obj.clone() as any as T;
+    return obj.clone() as any as T
   }
 
-  return typeof structuredClone === "function"
+  return typeof structuredClone === 'function'
     ? structuredClone(obj)
-    : JSON.parse(JSON.stringify(obj));
-};
+    : JSON.parse(JSON.stringify(obj))
+}

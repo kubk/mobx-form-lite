@@ -1,42 +1,37 @@
-import {
-  TextField,
-  formTouchAll,
-  isFormValid,
-  formToPlain,
-} from "mobx-form-lite";
-import { action, makeAutoObservable } from "mobx";
+import { TextField, formTouchAll, isFormValid, formToPlain } from 'mobx-form-lite'
+import { action, makeAutoObservable } from 'mobx'
 
 class LoginFormStore {
   form = {
-    email: new TextField("", { validate: validateEmail }),
-    password: new TextField("", { validate: validatePassword }),
-  };
+    email: new TextField('', { validate: validateEmail }),
+    password: new TextField('', { validate: validatePassword }),
+  }
 
-  isSubmitting = false;
+  isSubmitting = false
 
   constructor() {
-    makeAutoObservable(this, {}, { autoBind: true });
+    makeAutoObservable(this, {}, { autoBind: true })
   }
 
   submit() {
-    formTouchAll(this.form);
+    formTouchAll(this.form)
     if (!isFormValid(this.form)) {
-      return;
+      return
     }
 
-    this.isSubmitting = true;
+    this.isSubmitting = true
 
     login(formToPlain(this.form))
       .then(() => {
-        alert("Login successful");
+        alert('Login successful')
       })
       .catch((reason) => {
-        alert(reason.message);
+        alert(reason.message)
       })
       .finally(
         action(() => {
-          this.isSubmitting = false;
+          this.isSubmitting = false
         }),
-      );
+      )
   }
 }

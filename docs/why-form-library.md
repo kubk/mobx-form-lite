@@ -31,8 +31,8 @@ The 2 states have different purposes: `isDirty` disables Save until something ch
 ```tsx
 <form
   onSubmit={(event) => {
-    event.preventDefault();
-    store.submit();
+    event.preventDefault()
+    store.submit()
   }}
 >
   <input
@@ -44,7 +44,7 @@ The 2 states have different purposes: `isDirty` disables Save until something ch
     <div>{store.form.title.error}</div>
   ) : null}
   {/* other form fields */}
-  <button type="submit" disabled={!store.isDirty}>
+  <button type='submit' disabled={!store.isDirty}>
     Save
   </button>
 </form>

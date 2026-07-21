@@ -1,17 +1,17 @@
-import { TextField } from "mobx-form-lite";
-import { HTMLInputTypeAttribute } from "react";
-import { observer } from "mobx-react-lite";
+import { TextField } from 'mobx-form-lite'
+import { HTMLInputTypeAttribute } from 'react'
+import { observer } from 'mobx-react-lite'
 
 type Props = {
-  field: TextField<string>;
-  label: string;
-  id?: string;
-  name: string;
-  type?: HTMLInputTypeAttribute;
-};
+  field: TextField<string>
+  label: string
+  id?: string
+  name: string
+  type?: HTMLInputTypeAttribute
+}
 
 const InputField = observer((props: Props) => {
-  const { field, name, type, id, label } = props;
+  const { field, name, type, id, label } = props
 
   return (
     <div>
@@ -24,9 +24,7 @@ const InputField = observer((props: Props) => {
         onChange={(e) => field.onChange(e.target.value)}
         onBlur={field.onBlur}
       />
-      {field.isTouched && field.error ? (
-        <div style={{ color: "red" }}>{field.error}</div>
-      ) : null}
+      {field.isTouched && field.error ? <div style={{ color: 'red' }}>{field.error}</div> : null}
     </div>
-  );
-});
+  )
+})

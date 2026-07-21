@@ -32,26 +32,26 @@ As well as providing the following rules:
 Let's start modeling the form. We'll create a `ResumeStore` that will hold the form state:
 
 ```typescript
-import { makeAutoObservable } from "mobx";
-import { ListField, TextField } from "mobx-form-lite";
+import { makeAutoObservable } from 'mobx'
+import { ListField, TextField } from 'mobx-form-lite'
 
 export type ExperienceItemType = {
-  company: TextField<string>;
-  years: TextField<string>;
-};
+  company: TextField<string>
+  years: TextField<string>
+}
 
 export class ResumeStore {
   form = {
-    name: new TextField(""),
-    lastname: new TextField(""),
-    fatherName: new TextField(""),
-    age: new TextField(""),
-    jobTitle: new TextField(""),
+    name: new TextField(''),
+    lastname: new TextField(''),
+    fatherName: new TextField(''),
+    age: new TextField(''),
+    jobTitle: new TextField(''),
     experience: new ListField<ExperienceItemType>([]),
-  };
+  }
 
   constructor() {
-    makeAutoObservable(this, {}, { autoBind: true });
+    makeAutoObservable(this, {}, { autoBind: true })
   }
 }
 ```

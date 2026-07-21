@@ -1,12 +1,12 @@
-export { BooleanToggle } from "./fields/boolean-toggle";
-export { BooleanField } from "./fields/boolean-field";
-export type { CloneableField } from "./interfaces/cloneable-field";
-export type { FieldWithError } from "./interfaces/field-with-error";
-export type { FieldWithValue } from "./interfaces/field-with-value";
-export { ListField } from "./fields/list-field";
-export { TextField } from "./fields/text-field";
-export type { TouchableField } from "./interfaces/touchable-field";
-export { validators } from "./validator";
+export { BooleanToggle } from './fields/boolean-toggle'
+export { BooleanField } from './fields/boolean-field'
+export type { CloneableField } from './interfaces/cloneable-field'
+export type { FieldWithError } from './interfaces/field-with-error'
+export type { FieldWithValue } from './interfaces/field-with-value'
+export { ListField } from './fields/list-field'
+export { TextField } from './fields/text-field'
+export type { TouchableField } from './interfaces/touchable-field'
+export { validators } from './validator'
 export {
   formTouchAll,
   formUnTouchAll,
@@ -18,5 +18,5 @@ export {
   isFormEmpty,
   isFormTouchedAndHasError,
   walkAndDo,
-} from "./form";
+} from './form'
 export { formToPlain } from './form-to-plain'

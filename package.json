@@ -10,6 +10,7 @@
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
+    "format": "oxfmt \"src/**/*.{ts,tsx}\" README.md \"docs/**/*.md\" \"docs/snippets/**/*.{ts,tsx}\" \"playground/src/examples/antd-dynamic-form-ex/**/*.{ts,tsx}\"",
     "test": "vitest --dir=src --typecheck",
     "test:coverage": "vitest run --dir=src/ --coverage",
     "test:size": "size-limit",
@@ -43,6 +44,7 @@
     "@size-limit/preset-small-lib": "^11.0.2",
     "@vitest/coverage-v8": "^3.0.8",
     "microbundle": "^0.15.1",
+    "oxfmt": "^0.59.0",
     "prettier": "^3.2.5",
     "size-limit": "^11.0.2",
     "typescript": "^5.8.2",

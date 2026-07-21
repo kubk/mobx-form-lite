@@ -1,11 +1,11 @@
-import { observer } from "mobx-react-lite";
-import { useResumeStore } from "./resume-store-context.tsx";
-import { List, Typography } from "antd";
-import { ExperienceItem } from "./experience-item.tsx";
+import { observer } from 'mobx-react-lite'
+import { useResumeStore } from './resume-store-context.tsx'
+import { List, Typography } from 'antd'
+import { ExperienceItem } from './experience-item.tsx'
 
 export const ExperienceList = observer(() => {
-  const resumeStore = useResumeStore();
-  const { form } = resumeStore;
+  const resumeStore = useResumeStore()
+  const { form } = resumeStore
 
   return (
     <List>
@@ -15,16 +15,14 @@ export const ExperienceList = observer(() => {
             key={i}
             item={experience}
             onRemove={() => {
-              resumeStore.removeExperience(i);
+              resumeStore.removeExperience(i)
             }}
           />
-        );
+        )
       })}
       {form.experience.isTouched && form.experience.error ? (
-        <Typography.Text type={"danger"}>
-          {form.experience.error}
-        </Typography.Text>
+        <Typography.Text type={'danger'}>{form.experience.error}</Typography.Text>
       ) : null}
     </List>
-  );
-});
+  )
+})

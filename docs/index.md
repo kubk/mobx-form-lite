@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "mobx-form-lite"
+  name: 'mobx-form-lite'
   tagline: Lightweight form management for MobX
   actions:
     - theme: brand
@@ -21,5 +21,5 @@ features:
   - title: 🪶 Lightweight
     details: ~1 kb gzipped because MobX does all the heavy lifting
   - title: 🔄 Flexible
-    details:  Supports all the possible ways of defining MobX store
+    details: Supports all the possible ways of defining MobX store
 ---
