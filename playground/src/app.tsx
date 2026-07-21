@@ -12,6 +12,8 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { ResumeForm } from "./examples/antd-dynamic-form-ex/resume-form.tsx";
 import AntdDynamicFormCode from "./examples/antd-dynamic-form-ex/resume-form.tsx?raw";
 import { ResumeStoreProvider } from "./examples/antd-dynamic-form-ex/resume-store-context.tsx";
+import { AntdLoginForm } from "./examples/antd-login-form.tsx";
+import AntdLoginFormCode from "./examples/antd-login-form.tsx?raw";
 
 const examples: Array<{
   title: string;
@@ -53,6 +55,12 @@ const examples: Array<{
     ),
     code: AntdDynamicFormCode,
   },
+  {
+    title: "ANTD login form",
+    name: "antd_login_form",
+    component: <AntdLoginForm />,
+    code: AntdLoginFormCode,
+  },
 ];
 
 export const App = () => {
@@ -60,11 +68,17 @@ export const App = () => {
     "id",
     null,
   );
+  const isPreviewOnly =
+    new URLSearchParams(window.location.search).get("view") === "preview";
 
   if (selectedExampleName !== null) {
     const example = examples.find(({ name }) => name === selectedExampleName);
     if (!example) {
       return <div>Example not found</div>;
+    }
+
+    if (isPreviewOnly) {
+      return <main className="embedded-preview">{example.component}</main>;
     }
 
     return (

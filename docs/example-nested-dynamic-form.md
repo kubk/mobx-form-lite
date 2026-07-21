@@ -122,6 +122,10 @@ This is how the root form component looks:
 
 We have built a form using Mobx and `mobx-form-lite` that supports nested and dynamic fields. The form is type-safe and can be covered with unit tests without needing to set up a browser environment. We can leverage Mobx’s power and use `computed` on the form state to calculate derived values, as the form state is just an observable.
 
-Enjoy the clickable demo and play with the code below:
+Try the interactive demo below:
 
-<iframe src="https://stackblitz.com/edit/vite-react-ts-4hbtc9?embed=1&view=preview" style="margin-top: 20px" width="100%" height="600px"></iframe>
+<div class="demo-toolbar">
+  <strong>Interactive preview</strong>
+  <a href="https://stackblitz.com/edit/vite-react-ts-4hbtc9" target="_blank" rel="noopener">View code on StackBlitz ↗</a>
+</div>
+<iframe class="demo-preview" src="/mobx-form-lite/playground/index.html?id=antd_nested_form&view=preview" title="Nested dynamic form interactive demo" loading="lazy"></iframe>

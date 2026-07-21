@@ -54,6 +54,10 @@ It recursively converts the form state to a plain object, which is useful when y
 
 <<< @/snippets/example-antd-api/7.tsx{10,22}
 
-We've finished. Enjoy the clickable demo and play with the code below:
+We've finished. Try the interactive demo below:
 
-<iframe src="https://stackblitz.com/edit/vite-react-ts-xagd3i?embed=1&view=preview" style="margin-top: 20px" width="100%" height="500px"></iframe>
+<div class="demo-toolbar">
+  <strong>Interactive preview</strong>
+  <a href="https://stackblitz.com/edit/vite-react-ts-xagd3i" target="_blank" rel="noopener">View code on StackBlitz ↗</a>
+</div>
+<iframe class="demo-preview demo-preview--compact" src="/mobx-form-lite/playground/index.html?id=antd_login_form&view=preview" title="Login form interactive demo" loading="lazy"></iframe>

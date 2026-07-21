@@ -1,1 +1,31 @@
 /* Button styling is in the component */
+
+.demo-toolbar {
+  align-items: center;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 10px 14px;
+}
+
+.demo-toolbar a {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.demo-preview {
+  background: #fff;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 0 0 8px 8px;
+  display: block;
+  height: 600px;
+  width: 100%;
+}
+
+.demo-preview--compact {
+  height: 500px;
+}

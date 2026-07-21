@@ -14,3 +14,24 @@ body {
   padding: 0;
   display: flex;
 }
+
+#root {
+  width: 100%;
+}
+
+.embedded-preview {
+  align-items: safe center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: safe center;
+  min-height: 100vh;
+  overflow: auto;
+  padding: 24px;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .embedded-preview {
+    padding: 12px;
+  }
+}
