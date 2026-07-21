@@ -2,12 +2,14 @@
   "name": "playground",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "pnpm@9.15.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:docs": "tsc && vite build --outDir ../docs/public/playground --emptyOutDir",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "typecheck": "npx tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "preview": "vite preview"
   },
   "dependencies": {

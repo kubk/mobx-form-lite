@@ -1,6 +1,7 @@
 {
   "name": "mobx-form-lite",
   "version": "0.9.7",
+  "packageManager": "pnpm@9.15.0",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/mobx-form-lite.js",
@@ -9,16 +10,16 @@
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
-    "test": "npx vitest --dir=src --typecheck",
-    "test:coverage": "npx vitest run --dir=src/ --coverage",
-    "test:size": "npx size-limit",
-    "prettier": "npx prettier --write src/**/*.ts",
-    "typecheck": "npx tsc --noEmit",
-    "prepublishOnly": "npm run build",
-    "docs:dev": "npm run playground:build && vitepress dev docs",
-    "docs:build": "npm run playground:build && vitepress build docs",
+    "test": "vitest --dir=src --typecheck",
+    "test:coverage": "vitest run --dir=src/ --coverage",
+    "test:size": "size-limit",
+    "prettier": "prettier --write src/**/*.ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build",
+    "docs:dev": "pnpm run playground:build && vitepress dev docs",
+    "docs:build": "pnpm run playground:build && vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "playground:build": "npm --prefix playground run build -- --outDir ../docs/public/playground --emptyOutDir"
+    "playground:build": "pnpm --filter playground run build:docs"
   },
   "size-limit": [
     {
