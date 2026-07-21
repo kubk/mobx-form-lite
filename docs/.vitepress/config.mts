@@ -35,7 +35,10 @@ export default defineConfig({
     sidebar: [
       {
         text: "Introduction",
-        items: [{ text: "Quick start", link: "/quick-start" }],
+        items: [
+          { text: "Quick start", link: "/quick-start" },
+          { text: "Why a form library?", link: "/why-form-library" },
+        ],
       },
       {
         text: "Tutorials",
