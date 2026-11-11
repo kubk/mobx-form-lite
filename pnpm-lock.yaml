@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      mobx:
-        specifier: ^5.0.0 || ^6.0.0
-        version: 6.16.1
     devDependencies:
       '@babel/plugin-transform-typescript':
         specifier: ^7.29.0
@@ -24,6 +20,9 @@ importers:
       microbundle:
         specifier: ^0.15.1
         version: 0.15.1(@types/babel__core@7.20.5)
+      mobx:
+        specifier: ^7.1.6
+        version: 7.1.6
       oxfmt:
         specifier: ^0.59.0
         version: 0.59.0
@@ -48,18 +47,21 @@ importers:
       antd:
         specifier: ^5.15.3
         version: 5.29.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      mobx:
+        specifier: ^7.1.6
+        version: 7.1.6
       mobx-form-lite:
-        specifier: ^0.9.3
-        version: 0.9.7(mobx@6.16.1)
+        specifier: workspace:*
+        version: link:..
       mobx-log:
         specifier: ^2.2.3
         version: 2.2.4(react@18.3.1)
       mobx-persist-store:
         specifier: ^1.1.4
-        version: 1.1.8(mobx@6.16.1)
+        version: 1.1.8(mobx@7.1.6)
       mobx-react-lite:
-        specifier: ^4.0.5
-        version: 4.1.1(mobx@6.16.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^5.1.2
+        version: 5.1.2(mobx@7.1.6)(react@18.3.1)
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -3120,11 +3122,6 @@ packages:
   mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
 
-  mobx-form-lite@0.9.7:
-    resolution: {integrity: sha512-WmuUVQrOuR1lB4A34qGerv9ZS3Sf284HbwMMBgqp3MAKNfiEy/LmsIhSPRislis40W0hmuuD5tR46WgCkrj0lg==}
-    peerDependencies:
-      mobx: ^5.0.0 || ^6.0.0
-
   mobx-log@2.2.4:
     resolution: {integrity: sha512-TRrKgXkhH5HsfCv3zcm4Fs8s/t405RkabUD6LGiZvWnCzOh/930FqkWKMaPev6oFLTs48a07bU1RgYE62soazw==}
     engines: {node: '>=10'}
@@ -3136,21 +3133,14 @@ packages:
     peerDependencies:
       mobx: '*'
 
-  mobx-react-lite@4.1.1:
-    resolution: {integrity: sha512-iUxiMpsvNraCKXU+yPotsOncNNmyeS2B5DKL+TL6Tar/xm+wwNJAubJmtRSeAoYawdZqwv8Z/+5nPRHeQxTiXg==}
+  mobx-react-lite@5.1.2:
+    resolution: {integrity: sha512-40ZukD+RmKT1up5J1rHcPU8wJSB++Wf37lkV6wIHdQtRTt9wCYf9swfYUbfcW+Mz94xImQBwQ7jAr0aP0KeATA==}
     peerDependencies:
-      mobx: ^6.9.0
-      react: ^16.8.0 || ^17 || ^18 || ^19
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
+      mobx: ^7.0.0
+      react: ^18 || ^19
 
-  mobx@6.16.1:
-    resolution: {integrity: sha512-syNcDdX3KT+Jq3je6eGjBhuc24Z68td2VG0zNFqRswaE433D9SNH5VRy/xrGbJsUixfppLLccXhAW9JSf6n+SQ==}
+  mobx@7.1.6:
+    resolution: {integrity: sha512-ZCiX6zxYeWaPnBLnH/OHJCFV5FysL41I7ndHntYv/mU4bWvpmP0N46Z+ujg/DoRv2K+7748/HvgFn1Jm8jiObQ==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -4363,11 +4353,6 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
-
-  use-sync-external-store@1.6.0:
-    resolution: {integrity: sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -7921,27 +7906,20 @@ snapshots:
 
   mitt@3.0.1: {}
 
-  mobx-form-lite@0.9.7(mobx@6.16.1):
-    dependencies:
-      mobx: 6.16.1
-
   mobx-log@2.2.4(react@18.3.1):
     dependencies:
       react: 18.3.1
 
-  mobx-persist-store@1.1.8(mobx@6.16.1):
+  mobx-persist-store@1.1.8(mobx@7.1.6):
     dependencies:
-      mobx: 6.16.1
+      mobx: 7.1.6
 
-  mobx-react-lite@4.1.1(mobx@6.16.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  mobx-react-lite@5.1.2(mobx@7.1.6)(react@18.3.1):
     dependencies:
-      mobx: 6.16.1
+      mobx: 7.1.6
       react: 18.3.1
-      use-sync-external-store: 1.6.0(react@18.3.1)
-    optionalDependencies:
-      react-dom: 18.3.1(react@18.3.1)
 
-  mobx@6.16.1: {}
+  mobx@7.1.6: {}
 
   mri@1.2.0: {}
 
@@ -9303,10 +9281,6 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
-
-  use-sync-external-store@1.6.0(react@18.3.1):
-    dependencies:
-      react: 18.3.1
 
   util-deprecate@1.0.2: {}
 

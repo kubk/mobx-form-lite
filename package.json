@@ -20,7 +20,8 @@
     "docs:dev": "pnpm run playground:build && vitepress dev docs",
     "docs:build": "pnpm run playground:build && vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "playground:build": "pnpm --filter playground run build:docs"
+    "playground:build": "pnpm --filter playground run build:docs",
+    "release": "sh -c 'npm version --message \"Release %s\" \"$0\" && git push --follow-tags'"
   },
   "size-limit": [
     {
@@ -44,6 +45,7 @@
     "@size-limit/preset-small-lib": "^11.0.2",
     "@vitest/coverage-v8": "^3.0.8",
     "microbundle": "^0.15.1",
+    "mobx": "^7.1.6",
     "oxfmt": "^0.59.0",
     "prettier": "^3.2.5",
     "size-limit": "^11.0.2",
@@ -52,6 +54,6 @@
     "vitest": "^3.0.8"
   },
   "peerDependencies": {
-    "mobx": "^5.0.0 || ^6.0.0"
+    "mobx": ">=7.0.0"
   }
 }
