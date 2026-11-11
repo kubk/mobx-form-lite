@@ -20,7 +20,7 @@
     "docs:dev": "pnpm run playground:build && vitepress dev docs",
     "docs:build": "pnpm run playground:build && vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "playground:build": "pnpm --filter playground run build:docs",
+    "playground:build": "pnpm run build && pnpm --filter playground run build:docs",
     "release": "sh -c 'npm version --message \"Release %s\" \"$0\" && git push --follow-tags'"
   },
   "size-limit": [
