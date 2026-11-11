@@ -1,6 +1,6 @@
 {
   "name": "mobx-form-lite",
-  "version": "0.9.7",
+  "version": "0.10.0",
   "packageManager": "pnpm@9.15.0",
   "description": "",
   "source": "src/index.ts",
