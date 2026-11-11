@@ -40,6 +40,10 @@
   ],
   "author": "https://github.com/kubk",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubk/mobx-form-lite.git"
+  },
   "devDependencies": {
     "@babel/plugin-transform-typescript": "^7.29.0",
     "@size-limit/preset-small-lib": "^11.0.2",
