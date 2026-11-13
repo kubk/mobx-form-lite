@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   test:
-    uses: ./.github/workflows/node.js.yml
+    uses: $/.github/workflows/node.js.yml
 
   publish:
     needs: test
@@ -20,17 +20,19 @@ jobs:
 
     steps:
       # Full history and tags let the release notes list commits since the previous tag.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
 
-      - uses: actions/setup-node@v6
+      # Releases skip the Actions cache so a poisoned cache entry cannot reach the published package.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
+          package-manager-cache: false
           registry-url: https://registry.npmjs.org
-          cache: pnpm
 
       - name: Check tag matches package version
         run: test "v$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME"
