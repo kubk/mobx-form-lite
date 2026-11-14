@@ -55,12 +55,6 @@ export default defineConfig({
           { text: "Functions", link: "/api-functions" },
         ],
       },
-      {
-        text: "Resources",
-        items: [
-          { text: "LLMs.txt", link: "/mobx-form-lite/llms.txt" },
-        ],
-      },
     ],
 
     socialLinks: [
