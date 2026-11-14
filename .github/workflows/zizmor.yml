@@ -18,7 +18,8 @@ jobs:
         with:
           persist-credentials: false
 
-      # Without Advanced Security, findings fail the check instead of landing in the Security tab.
+      # Fail the check on findings instead of uploading them to the Security tab,
+      # which would need security-events: write and never fails the job.
       - uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
         with:
           advanced-security: false
