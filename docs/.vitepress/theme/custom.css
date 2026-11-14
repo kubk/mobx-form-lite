@@ -1,5 +1,30 @@
 /* Button styling is in the component */
 
+/* Show the appearance switch and GitHub link in the navbar instead of the "..." menu */
+@media (min-width: 768px) {
+  .VPNavBar .VPNavBarAppearance,
+  .VPNavBar .VPNavBarSocialLinks {
+    display: flex;
+    align-items: center;
+  }
+
+  .VPNavBar .VPNavBarExtra {
+    display: none;
+  }
+
+  /* The search slot is an empty spacer that fills the bar; move it left of llms.txt so llms.txt sits next to the theme switcher */
+  .VPNavBar .VPNavBarSearch {
+    order: -1;
+  }
+}
+
+/* The "On this page" dropdown lives in the navbar here (see NavOutline.vue) */
+@media (min-width: 960px) {
+  .Layout .VPLocalNav {
+    display: none;
+  }
+}
+
 .demo-toolbar {
   align-items: center;
   background: var(--vp-c-bg-soft);

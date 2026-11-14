@@ -19,4 +19,10 @@ import { VPButton } from 'vitepress/theme'
   align-items: center;
   padding-left: 28px;
 }
+
+@media (min-width: 768px) {
+  .llms-txt {
+    padding: 0 16px 0 0;
+  }
+}
 </style>
