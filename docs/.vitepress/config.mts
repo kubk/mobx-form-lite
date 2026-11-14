@@ -36,7 +36,7 @@ export default defineConfig({
       {
         text: "Introduction",
         items: [
-          { text: "Quick start", link: "/quick-start" },
+          { text: "Quick start", link: "/" },
           { text: "Why a form library?", link: "/why-form-library" },
         ],
       },
